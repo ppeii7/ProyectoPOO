@@ -21,8 +21,8 @@ public class ModeloSnake {
 
     public ModeloSnake() {
         // Posición inicial
-        snakeRow[0] = 6;
-        snakeCol[0] = 5;
+        snakeRow[0] = 4;
+        snakeCol[0] = 6;
     }
 
     public void reiniciar() {
