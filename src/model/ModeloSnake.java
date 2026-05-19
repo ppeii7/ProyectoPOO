@@ -22,7 +22,7 @@ public class ModeloSnake {
     public ModeloSnake() {
         // Posición inicial
         snakeRow[0] = 4;
-        snakeCol[0] = 6;
+        snakeCol[0] = 3;
     }
 
     public void reiniciar() {
@@ -35,7 +35,7 @@ public class ModeloSnake {
 
         mapa = new MapaSnake(); // Reiniciamos el mapa
         snakeRow[0] = 4;
-        snakeCol[0] = 6;
+        snakeCol[0] = 3;
         tiempoZoom = 0;
     }
 
