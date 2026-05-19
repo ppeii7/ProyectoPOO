@@ -1,0 +1,63 @@
+package control;
+
+import javax.swing.JFrame;
+import model.*;
+import view.*;
+
+/**
+ * Controlador central de apertura de juegos.
+ *
+ * Cada método abre un juego montando el patrón MVC completo:
+ *   Modelo → Vista (JPanel) → Controlador → JFrame
+ *
+ * VentanaJuegos llama a estos métodos cuando el jugador pulsa
+ * uno de los botones "JUGAR".
+ */
+public class ControlJuego {
+
+    // ── Snake ────────────────────────────────────────────────────────────────
+    public void abrirVentanaSnake() {
+        JFrame ventana = new JFrame("Snake");
+        ventana.setSize(616, 700);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
+
+        ModeloSnake  modelo     = new ModeloSnake();
+        VentanaSnake vista      = new VentanaSnake(modelo);
+        ControlSnake controlador = new ControlSnake(modelo, vista);
+
+        ventana.add(vista);
+        ventana.setVisible(true);
+    }
+
+    // ── Pong ─────────────────────────────────────────────────────────────────
+    public void abrirVentanaPong() {
+        JFrame ventana = new JFrame("Pong");
+        ventana.setSize(600, 400);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
+
+        // Pregunta al jugador si quiere jugar contra la CPU o contra otro jugador
+        String[] opciones = {"Contra la CPU", "Dos jugadores"};
+        int eleccion = javax.swing.JOptionPane.showOptionDialog(
+            null,
+            "¿Cómo quieres jugar al Pong?",
+            "Modo de juego",
+            javax.swing.JOptionPane.DEFAULT_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE,
+            null, opciones, opciones[0]);
+
+        if (eleccion < 0) return; // canceló
+
+        boolean modoCPU = (eleccion == 0);
+
+        ModeloPong  modelo      = new ModeloPong(modoCPU);
+        VentanaPong vista       = new VentanaPong(modelo);
+        ControlPong controlador = new ControlPong(modelo, vista);
+
+        ventana.add(vista);
+        ventana.setVisible(true);
+    }
+}

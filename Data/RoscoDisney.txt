@@ -1,0 +1,130 @@
+A;Sirena de cabello rojo protagonista de La Sirenita;Ariel
+A;Joven de las calles de Agrabah que encuentra una lámpara mágica;Aladín
+A;Princesa que cae en un sueño profundo al pincharse con un huso;Aurora
+A;Película en la que una niña cae por una madriguera de conejo a un mundo mágico;Alicia en el País de las Maravillas
+A;Niño dueño de los juguetes Woody y Buzz en las primeras películas de Toy Story;Andy
+B;Cervatillo protagonista de la clásica película de Disney de 1942;Bambi
+B;Nombre de la joven protagonista de La Bella y la Bestia;Bella
+B;Oso perezoso y amigo de Mowgli en El Libro de la Selva;Baloo
+B;Película de Disney de 2008 sobre un perro televisivo que cree tener superpoderes;Bolt
+B;Astronauta de juguete cuyo nombre completo es Buzz Lightyear;Buzz
+C;Joven que pierde su zapato de cristal al huir del baile del príncipe;Cenicienta
+C;Película de Pixar de 2017 ambientada en el Día de Muertos en México;Coco
+C;Villana de 101 Dálmatas que quiere un abrigo de piel de perro;Cruella
+C;Hada diminuta de color verde amiga de Peter Pan;Campanilla
+C;Película de Pixar de 2006 sobre coches que participan en carreras;Cars
+D;Elefante del circo con enormes orejas que aprende a volar;Dumbo
+D;Pez azul con pérdida de memoria que ayuda a Marlin a encontrar a Nemo;Dory
+D;Famoso pato de Disney sobrino del Tío Gilito y amigo de Mickey;Donald
+D;Enano de Blancanieves que siempre está adormilado;Dormilón
+D;Película de Pixar de 2015 sobre las emociones que viven en la mente de Riley;Del Revés
+E;Reina de Arendelle con poderes sobre el hielo protagonista de Frozen;Elsa
+E;Joven gitana protagonista de El Jorobado de Notre Dame;Esmeralda
+E;Película de Disney de 1994 sobre el hijo del rey Mufasa y su lucha por recuperar el trono;El Rey León
+E;Película de Disney de 2022 sobre una familia con dones mágicos en Colombia;Encanto
+E;Superheroína de Los Increíbles también conocida como señora Parr;Elastigirl
+F;Película de Disney de 1940 que combina música clásica con animación;Fantasía
+F;Película de Disney de 2013 sobre dos hermanas con poderes de hielo en Arendelle;Frozen
+F;Zorrillo amigo de Bambi cuyo nombre en español significa flor;Flor
+F;Sátiro entrenador de Hércules en la película de Disney;Filoctetes
+F;Hormiga inventora y protagonista de la película Bichos;Flik
+G;Capitán pirata y principal antagonista de la película Peter Pan;Garfio
+G;Ser mágico que vive en una lámpara y concede deseos en la película Aladín;Genio
+G;Cocinero fallecido cuyo espíritu inspira a la rata Remy en Ratatouille;Gusteau
+G;Enano más malhumorado e irritable de los siete de Blancanieves;Gruñón
+G;Cazador musculoso y antagonista de La Bella y la Bestia;Gastón
+H;Semidiós protagonista de la película de Disney de 1997;Hércules
+H;Dios del Inframundo y villano principal de la película Hércules;Hades
+H;Bisabuelo de Miguel y músico que aparece en la Tierra de los Muertos en Coco;Héctor
+H;Joven inventor protagonista de la película Big Hero 6;Hiro
+H;Cerdito hucha de juguete de la pandilla de Woody en Toy Story;Hamm
+I;Loro verde compañero del villano Jafar en la película Aladín;Iago
+I;Bisabuela músico de Miguel que aparece en la Tierra de los Muertos en Coco;Imelda
+I;Película de Pixar de 2012 sobre una princesa escocesa que lanza flechas;Indomable
+I;Maestro de escuela que protagoniza la leyenda del jinete sin cabeza en una película de Disney;Ichabod
+I;Gorila protagonista de la película de Disney de 2020 basada en una historia real;Ivan
+J;Vaquera de juguete con trenzas rojas de la pandilla de Woody en Toy Story;Jessie
+J;Visir malvado del sultán de Agrabah en la película Aladín;Jafar
+J;Princesa hija del sultán de Agrabah en la película Aladín;Jasmín
+J;Coneja policía novata protagonista de la película Zootrópolis;Judy
+J;Bebé con múltiples superpoderes de la familia Parr en Los Increíbles;Jack-Jack
+K;Vendedor de hielo amigo de Anna en el reino de Arendelle en Frozen;Kristoff
+K;Pitón hipnotizadora que intenta comerse a Mowgli en El Libro de la Selva;Kaa
+K;Joven nativo americano que se convierte en oso en la película Hermano Oso;Kenai
+K;Cachorro de oso que acompaña a Kenai en la película Hermano Oso;Koda
+K;Pájaro gigante de color amarillo que Russell encuentra en la película Up;Kevin
+L;Niña hawaiana protagonista de la película Lilo y Stitch;Lilo
+L;Película de Disney de 1989 sobre una sirena de cabello rojo;La Sirenita
+L;Película de Disney de 1991 sobre una bestia encantada que se enamora de una joven;La Bella y la Bestia
+L;Oso de peluche rosa con olor a fresas y antagonista de Toy Story 3;Lotso
+L;Candelabro mayordomo encantado de la mansión de la Bestia;Lumière
+M;Guerrera china que se disfraza de soldado para luchar en lugar de su padre;Mulán
+M;Padre de Simba y rey de las tierras del orgullo en El Rey León;Mufasa
+M;Joven músico protagonista de la película de Pixar Coco;Miguel
+M;Villana que maldice a la princesa Aurora en La Bella Durmiente;Maléfica
+M;Niño humano criado por lobos en la jungla en El Libro de la Selva;Mowgli
+N;Leona amiga de la infancia de Simba en la película El Rey León;Nala
+N;Perra que cuida a los niños Darling en la película Peter Pan;Nana
+N;Pez payaso protagonista de la película Buscando a Nemo;Nemo
+N;Zorro astuto protagonista de la película Zootrópolis;Nick
+N;Príncipe que se convierte en rana en La Princesa y el Sapo;Naveen
+O;Muñeco de nieve que sueña con conocer el verano en la película Frozen;Olaf
+O;Gato callejero que ayuda a los aristócratas en la película Los Aristogatos;O'Malley
+O;Gatito callejero protagonista de la película Oliver y su pandilla;Oliver
+O;Primer personaje animado creado por Walt Disney antes que Mickey Mouse;Oswald
+O;Joven ratona que busca a su padre en Basil el Ratón Superdetective;Olivia
+P;Jabalí amigo inseparable del suricato Timón en El Rey León;Pumba
+P;Niño que no quiere crecer y vuela protagonista de la película de Disney;Peter Pan
+P;Muñeco de madera que quiere convertirse en un niño de verdad;Pinocho
+P;Hija de un jefe indígena americano protagonista de la película de Disney;Pocahontas
+P;Caballo alado blanco que acompaña a Hércules en la película de Disney;Pegaso
+Q;Jorobado protagonista que vive en la catedral de Notre Dame;Quasimodo
+Q;Película de Disney de 1988 que mezcla personajes animados con actores reales;¿Quién engañó a Roger Rabbit?
+Q;Película de Disney en la que un científico reduce accidentalmente el tamaño de sus hijos;Querida, he encogido a los niños
+Q;Apellido del protagonista de Guardianes de la Galaxia conocido como Star-Lord;Quill
+Q;Guerrera digital que ayuda al protagonista en la película Tron Legacy;Quorra
+R;Rata que sueña con convertirse en chef en un famoso restaurante de París;Remy
+R;Mandril sabio que aconseja a Simba en la película El Rey León;Rafiki
+R;Villano de videojuego que quiere convertirse en héroe en la película de Disney;Ralph
+R;Película de Pixar de 2007 sobre una rata cocinera en un restaurante parisino;Ratatouille
+R;Princesa de cabello larguísimo encerrada en una torre desde niña;Rapunzel
+S;Tío malvado de Simba y antagonista principal de El Rey León;Scar
+S;Hijo del rey Mufasa y protagonista de la película El Rey León;Simba
+S;Cangrejo rojo mayordomo de Ariel en la película La Sirenita;Sebastián
+S;Experimento alienígena azul protagonista de la película Lilo y Stitch;Stitch
+S;Niño que destruye juguetes y actúa como antagonista en la primera película de Toy Story;Sid
+T;Conejito amigo de Bambi conocido por mover la pata cuando está emocionado;Tambor
+T;Franquicia de Pixar iniciada en 1995 sobre juguetes que cobran vida;Toy Story
+T;Suricato amigo del jabalí Pumba en la película El Rey León;Timón
+T;Joven cajún que sueña con abrir su propio restaurante en La Princesa y el Sapo;Tiana
+T;Humano criado por gorilas protagonista de la película de Disney de 1999;Tarzán
+U;Villana pulpo que roba la voz de Ariel a cambio de hacerla humana;Úrsula
+U;Película de Pixar de 2009 sobre un anciano que viaja en su casa atada a globos;Up
+U;Criatura mágica con un cuerno en la frente que aparece en la película Fantasía;Unicornio
+U;Película de Pixar de 2013 que narra la etapa universitaria de Mike y Sulley;Universidad de Monstruos
+U;Película de Disney de 2022 sobre una familia de exploradores en un mundo subterráneo misterioso;Un Mundo Extraño
+V;Hija de la familia Parr con poderes de invisibilidad en Los Increíbles;Violeta
+V;Nombre con el que se conoce a Moana en España y parte de Europa;Vaiana
+V;Niña con poderes glitch protagonista de la película Ralph el Demoledor;Vanellope
+V;Joven científico que resucita a su perro en la película de animación Frankenweenie;Víctor
+V;Película de Disney de 2005 sobre una paloma mensajera en la Segunda Guerra Mundial;Valiant
+W;Robot que limpia la Tierra en solitario protagonista de la película de Pixar de 2008;WALL-E
+W;Vaquero de juguete y protagonista principal de la saga Toy Story;Woody
+W;Niña que viaja a Nunca Jamás junto a Peter Pan y sus hermanos;Wendy
+W;Fundador de los estudios de animación que llevan su nombre;Walt Disney
+W;Osito de peluche amarillo protagonista de las aventuras en el Bosque de los Cien Acres;Winnie
+X;Franquicia de superhéroes mutantes ahora perteneciente a los estudios Disney;X-Men
+X;Nombre real del líder telepático de los X-Men que usa silla de ruedas;Xavier
+X;Película de mutantes ambientada durante la crisis de los misiles cubanos de 1962;X-Men Primera Generación
+X;Película de mutantes en la que viajan al pasado para evitar la destrucción de su especie;X-Men Días del Futuro Pasado
+X;Raza de perro mexicano sin pelo que aparece en la película Coco;Xoloitzcuintle
+Y;Maestro Jedi de pequeño tamaño y color verde en la saga Star Wars de Disney;Yoda
+Y;Villana que intenta convertir al joven inca en llama en El Emperador y sus Locuras;Yzma
+Y;Líder anciana del pueblo Northuldra en la película Frozen 2;Yelena
+Y;Algoritmo femenino de internet que ayuda a Vanellope en WiFi Ralph;Yesss
+Y;Villano enmascarado cuya verdadera identidad es el profesor Callaghan en Big Hero 6;Yokai
+Z;Película de Disney sobre una ciudad donde conviven animales de todas las especies;Zootrópolis
+Z;Cálao rojo consejero del rey Mufasa en la película El Rey León;Zazu
+Z;Leona antagonista y madre de Kovu en El Rey León 2 El Orgullo de Simba;Zira
+Z;Personaje enmascarado que roba a los ricos para dar a los pobres en las películas de Disney;Zorro
+Z;Enemigo jurado de Buzz Lightyear que aparece en la película Toy Story 2;Zurg
