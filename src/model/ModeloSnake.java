@@ -34,8 +34,8 @@ public class ModeloSnake {
         nextDirRow = 0; nextDirCol = 0;
 
         mapa = new MapaSnake(); // Reiniciamos el mapa
-        snakeRow[0] = 6;
-        snakeCol[0] = 5;
+        snakeRow[0] = 4;
+        snakeCol[0] = 6;
         tiempoZoom = 0;
     }
 
