@@ -3,6 +3,7 @@ package control;
 import javax.swing.JFrame;
 import model.*;
 import view.*;
+import view.tresenraya.VentanaRegistroTresEnRaya;
 
 /**
  * Controlador central de apertura de juegos.
@@ -15,6 +16,11 @@ import view.*;
  */
 public class ControlJuego {
 
+    private final ControlApp controlApp;
+
+    public ControlJuego(ControlApp controlApp) {
+        this.controlApp = controlApp;
+    }
     // ── Snake ────────────────────────────────────────────────────────────────
     public void abrirVentanaSnake() {
         JFrame ventana = new JFrame("Snake");
@@ -60,4 +66,10 @@ public class ControlJuego {
         ventana.add(vista);
         ventana.setVisible(true);
     }
+
+	public void abrirVentanaRegistroTresEnRaya() {
+		
+		VentanaRegistroTresEnRaya vregistro = new VentanaRegistroTresEnRaya(controlApp);
+		vregistro.setVisible(true);
+	}
 }

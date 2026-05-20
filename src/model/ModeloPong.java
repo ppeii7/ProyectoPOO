@@ -3,7 +3,7 @@ package model;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class ModeloPong {
+public class ModeloPong extends Juego{
     Random rand = new Random();
     
     // Variables de estado
@@ -22,6 +22,7 @@ public class ModeloPong {
 
     // Constructor que recibe el modo de juego
     public ModeloPong(boolean modoCPU) {
+    	super("Pong",1,2);
         this.modoCPU = modoCPU;
     }
 
@@ -92,4 +93,40 @@ public class ModeloPong {
             mensajeGanador = modoCPU ? "Gana la CPU!" : "Gana jugador 2!";
         }
     }
+
+	@Override
+	public void inicializar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String procesarTurno(Jugador jugador, String entrada) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isPartidaTerminada() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getPuntuacion(Jugador jugador) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Jugador getGanador() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getEstadoVisible() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,5 +1,6 @@
 package view;
 
+import control.ControlApp;
 import control.ControlJuego;
 import model.Jugador;
 import view.pasapalabra.VentanaDificultadPasapalabras;
@@ -49,16 +50,23 @@ public class VentanaJuegos extends JFrame {
             "Juega al clásico juego de\npelota contra la máquina",
             new Color(200, 60, 200),
             "pong"
+        },
+        {
+        	"TRES EN RAYA",
+        	"Pon tres fichas en línea\nantes que tu rival",
+        	new Color(220, 120, 30),
+        	"tres en raya"
         }
+        
     };
 
     private final Jugador     jugador;
     private final ControlJuego controlJuego; // ← controlador que abre los juegos
 
     // ────────────────────────────────────────────────────────────────────────
-    public VentanaJuegos(Jugador jugador) {
+    public VentanaJuegos(Jugador jugador, ControlApp ControlApp) {
         this.jugador      = jugador;
-        this.controlJuego = new ControlJuego(); // una instancia por ventana de menú
+        this.controlJuego = new ControlJuego(ControlApp); // una instancia por ventana de menú
 
         setTitle("Menú de juegos — " + jugador.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -266,11 +274,12 @@ public class VentanaJuegos extends JFrame {
                 // Snake sigue el mismo patrón: controlador monta el MVC y abre la ventana
                 controlJuego.abrirVentanaSnake();
                 break;
-
             case "pong":
                 controlJuego.abrirVentanaPong();
                 break;
-
+            case "tres en raya":
+            	controlJuego.abrirVentanaRegistroTresEnRaya();
+            	break;
             default:
                 JOptionPane.showMessageDialog(this,
                     "Juego no disponible todavía.",

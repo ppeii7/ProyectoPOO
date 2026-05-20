@@ -4,141 +4,66 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Clase Partida. Representa una sesión de juego concreta: qué juego se juega,
- * quiénes participan, cuándo empezó y el estado actual (en curso, pausada,
- * terminada). La persistencia se delega en GestorFicheros.
- */
-public class Partida {
+import view.tresenraya.VentanaTresEnRaya;
 
-	public enum Estado {
-		EN_CURSO, PAUSADA, TERMINADA
+public class Partida{
+	
+	
+	private Jugador j1;
+	private Jugador j2;
+	private String resultado;
+	private Jugador ganador;
+	private LocalDateTime fecha;
+	
+	public Partida(Jugador j1, Jugador j2, String resultado, Jugador ganador, LocalDateTime fecha) {
+		this.j1 = j1;
+		this.j2 = j2;
+		this.resultado = resultado;
+		this.ganador = ganador;
+		this.fecha = fecha;
+		new VentanaTresEnRaya();
 	}
 
-	private Juego juego;
-	private List<Jugador> jugadores;
-	private int turnoActual; // índice del jugador que tiene el turno
-	private Estado estado;
-	private LocalDateTime fechaInicio;
-	private LocalDateTime fechaUltimaModificacion;
-
-	// ID único para poder guardar/cargar partidas concretas
-	private String idPartida;
-
-	public Partida(Juego juego, List<Jugador> jugadores) {
-		this.juego = juego;
-		this.jugadores = new ArrayList<>(jugadores);
-		this.turnoActual = 0;
-		this.estado = Estado.EN_CURSO;
-		this.fechaInicio = LocalDateTime.now();
-		this.fechaUltimaModificacion = fechaInicio;
-		this.idPartida = generarId();
-		juego.inicializar();
+	public Jugador getJ1() {
+		return j1;
 	}
 
-	private String generarId() {
-		// ID simple basado en timestamp
-		return juego.getNombre().replaceAll("\\s+", "_") + "_" + System.currentTimeMillis();
+	public void setJ1(Jugador j1) {
+		this.j1 = j1;
 	}
 
-	/**
-	 * Juega el turno del jugador actual con la entrada dada. Avanza el turno si
-	 * procede.
-	 *
-	 * @param entrada Respuesta o movimiento del jugador.
-	 * @return Resultado textual del turno.
-	 */
-	public String jugarTurno(String entrada) {
-		if (estado != Estado.EN_CURSO) {
-			return "La partida no está en curso.";
-		}
+	public Jugador getJ2() {
+		return j2;
+	}
 
-		Jugador jugadorActual = jugadores.get(turnoActual);
-		String resultado = juego.procesarTurno(jugadorActual, entrada);
-		fechaUltimaModificacion = LocalDateTime.now();
+	public void setJ2(Jugador j2) {
+		this.j2 = j2;
+	}
 
-		if (juego.isPartidaTerminada()) {
-			estado = Estado.TERMINADA;
-		} else {
-			// Pasar al siguiente jugador (turnos circulares)
-			turnoActual = (turnoActual + 1) % jugadores.size();
-		}
-
+	public String getResultado() {
 		return resultado;
 	}
 
-	/**
-	 * Pausa la partida para poder reanudarla más tarde.
-	 */
-	public void pausar() {
-		if (estado == Estado.EN_CURSO) {
-			estado = Estado.PAUSADA;
-			fechaUltimaModificacion = LocalDateTime.now();
-		}
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
 	}
 
-	/**
-	 * Reanuda una partida pausada.
-	 */
-	public void reanudar() {
-		if (estado == Estado.PAUSADA) {
-			estado = Estado.EN_CURSO;
-			fechaUltimaModificacion = LocalDateTime.now();
-		}
+	public Jugador getGanador() {
+		return ganador;
 	}
 
-	/**
-	 * Genera las estadísticas de la partida para todos los jugadores. Debe llamarse
-	 * cuando la partida está TERMINADA.
-	 *
-	 * @return Lista de Estadistica, una por jugador.
-	 */
-	public List<Estadistica> generarEstadisticas() {
-		List<Estadistica> estadisticas = new ArrayList<>();
-		Jugador ganador = juego.getGanador();
-
-		for (Jugador j : jugadores) {
-			boolean gano = (ganador != null && ganador.equals(j));
-			int puntuacion = juego.getPuntuacion(j);
-			estadisticas.add(new Estadistica(j.getUsername(), juego.getNombre(), puntuacion, gano));
-		}
-
-		return estadisticas;
+	public void setGanador(Jugador ganador) {
+		this.ganador = ganador;
 	}
 
-	// --- Getters ---
-
-	public Juego getJuego() {
-		return juego;
+	public LocalDateTime getFecha() {
+		return fecha;
 	}
 
-	public List<Jugador> getJugadores() {
-		return jugadores;
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
 	}
-
-	public Jugador getJugadorActual() {
-		return jugadores.get(turnoActual);
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public String getIdPartida() {
-		return idPartida;
-	}
-
-	public LocalDateTime getFechaInicio() {
-		return fechaInicio;
-	}
-
-	public LocalDateTime getFechaUltimaModificacion() {
-		return fechaUltimaModificacion;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Partida{id='%s', juego='%s', estado=%s, jugadores=%d}", idPartida, juego.getNombre(),
-				estado, jugadores.size());
-	}
+	
+	
+	
 }

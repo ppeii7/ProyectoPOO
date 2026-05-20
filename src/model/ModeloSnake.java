@@ -2,7 +2,7 @@ package model;
 
 import java.util.Random;
 
-public class ModeloSnake {
+public class ModeloSnake extends Juego{
     
     public int CELL_SIZE = 60;  
     public final int MAX_LENGTH = 100; 
@@ -20,9 +20,10 @@ public class ModeloSnake {
     public int nextDirRow = 0, nextDirCol = 0;
 
     public ModeloSnake() {
+    	super("Snake", 1, 1);
         // Posición inicial
         snakeRow[0] = 4;
-        snakeCol[0] = 3;
+        snakeCol[0] = 6;
     }
 
     public void reiniciar() {
@@ -35,7 +36,7 @@ public class ModeloSnake {
 
         mapa = new MapaSnake(); // Reiniciamos el mapa
         snakeRow[0] = 4;
-        snakeCol[0] = 3;
+        snakeCol[0] = 6;
         tiempoZoom = 0;
     }
 
@@ -115,4 +116,40 @@ public class ModeloSnake {
             tiempoZoom--;
         }
     }
+
+	@Override
+	public void inicializar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String procesarTurno(Jugador jugador, String entrada) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isPartidaTerminada() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getPuntuacion(Jugador jugador) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Jugador getGanador() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getEstadoVisible() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
