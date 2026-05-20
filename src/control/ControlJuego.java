@@ -5,15 +5,7 @@ import model.*;
 import view.*;
 import view.tresenraya.VentanaRegistroTresEnRaya;
 
-/**
- * Controlador central de apertura de juegos.
- *
- * Cada método abre un juego montando el patrón MVC completo:
- *   Modelo → Vista (JPanel) → Controlador → JFrame
- *
- * VentanaJuegos llama a estos métodos cuando el jugador pulsa
- * uno de los botones "JUGAR".
- */
+
 public class ControlJuego {
 
     private final ControlApp controlApp;
@@ -72,4 +64,6 @@ public class ControlJuego {
 		VentanaRegistroTresEnRaya vregistro = new VentanaRegistroTresEnRaya(controlApp);
 		vregistro.setVisible(true);
 	}
+	
+
 }

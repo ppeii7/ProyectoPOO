@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import control.ControlApp;
+import control.ControlTresEnRaya;
 
 public class VentanaRegistroTresEnRaya extends JFrame{
 
@@ -69,6 +70,14 @@ public class VentanaRegistroTresEnRaya extends JFrame{
 		    gbc.gridx = 0; gbc.gridy = 1;
 		    panelCentral.add(cajaUsuarioJ1, gbc);
 		    
+		    JPasswordField cajaContraseñaJ1 = new JPasswordField("Nombre de usuario");
+		    cajaContraseñaJ1.setFont(fuente);
+		    cajaContraseñaJ1.setForeground(Color.GRAY);
+		    cajaContraseñaJ1.setPreferredSize(new Dimension(200, 30));
+		    cajaContraseñaJ1.setText(controlApp.getContraseñaActual());
+		    gbc.gridx = 0; gbc.gridy = 2;
+		    panelCentral.add(cajaContraseñaJ1, gbc);
+		    
 		    // Caja de texto usuario
 		    JTextField cajaUsuarioJ2 = new JTextField("Nombre de usuario");
 		    cajaUsuarioJ2.setFont(fuente);
@@ -117,14 +126,32 @@ public class VentanaRegistroTresEnRaya extends JFrame{
 		    panelCentral.add(cajaContraseñaJ2, gbc);
 
 
-		    // Botón registrarse
-		    JButton btnAñadirJugador = new JButton("Añadir jugador");
+		    JButton btnAñadirJugador = new JButton("Añadir jugadores");
 		    btnAñadirJugador.setFont(fuente);
 		    btnAñadirJugador.setPreferredSize(new Dimension(200, 30));
 		    gbc.gridx = 1; gbc.gridy = 3;
 		    panelCentral.add(btnAñadirJugador, gbc);
 
 		    add(panelCentral, BorderLayout.CENTER);
+		    
+		    btnAñadirJugador.addMouseListener(new MouseAdapter() {
+		        @Override
+		        public void mouseClicked(MouseEvent e) {
+		            ControlTresEnRaya controlTresEnRaya = new ControlTresEnRaya();
+
+		            boolean ok = controlTresEnRaya.añadirJugadores(
+		                cajaUsuarioJ1.getText(),
+		                new String(cajaContraseñaJ1.getPassword()),
+		                cajaUsuarioJ2.getText(),
+		                new String(cajaContraseñaJ2.getPassword())
+		            );
+
+		            if (ok) {
+		                controlTresEnRaya.crearPartida();
+		                dispose();
+		            }
+		        }
+		    });
 	        
 	        
 	}
