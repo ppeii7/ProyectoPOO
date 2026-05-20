@@ -90,7 +90,7 @@ public class VentanaTresEnRaya extends JFrame {
     }
 
     // ── Lógica del click ─────────────────────────────────────────────────────
-    private void manejarClick(int indice) {
+    public void manejarClick(int indice) {
         if (!modelo.colocarFicha(indice)) return;
 
         boolean esJ1 = modelo.isTurnoJ1();
@@ -128,7 +128,6 @@ public class VentanaTresEnRaya extends JFrame {
 
     // ── Reiniciar ────────────────────────────────────────────────────────────
     private void reiniciar() {
-    	control.guardarDatosPartidas();
         modelo.reiniciar();
         for (JButton b : botones) {
             b.setText("");

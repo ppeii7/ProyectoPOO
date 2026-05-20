@@ -113,7 +113,6 @@ public class Pasapalabra extends Juego {
     @Override public String  getEstadoVisible()        { return "Aciertos: " + aciertos + " | Fallos: " + fallos; }
     @Override public int     getPuntuacion(Jugador j)  { return aciertos; }
 
-    @Override
     public String procesarTurno(Jugador jugador, String respuesta) {
         Preguntas p = rosco.getSiguientePregunta();
         if (p == null) return "No quedan preguntas.";

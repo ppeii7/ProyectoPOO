@@ -17,11 +17,11 @@ import java.awt.geom.RoundRectangle2D;
 public class VentanaDificultadPasapalabras extends JFrame {
 
     // ── Colores ──────────────────────────────────────────────────────────────
-    private static final Color FONDO = new Color(12, 12, 40);
+    public static final Color FONDO = new Color(12, 12, 40);
 
     // ── Definición de dificultades ───────────────────────────────────────────
     // { etiqueta, descripción, emoji, color, ruta del fichero }
-    private static final Object[][] DIFICULTADES = {
+    public static final Object[][] DIFICULTADES = {
         {
             "FÁCIL",
             "Preguntas sencillas para\nempezar a jugar",
@@ -55,7 +55,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
     private Jugador jugador;
 
     // ────────────────────────────────────────────────────────────────────────
-    private VentanaDificultadPasapalabras(Jugador jugador) {
+    public  VentanaDificultadPasapalabras(Jugador jugador) {
         this.jugador = jugador;
 
         setTitle("Elige dificultad — Pasapalabra");
@@ -74,7 +74,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
     }
 
     // ── Panel de título ──────────────────────────────────────────────────────
-    private JPanel panelTitulo() {
+    public JPanel panelTitulo() {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(24, 40, 8, 40));
@@ -93,7 +93,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
     }
 
     // ── Panel con las tarjetas de dificultad ─────────────────────────────────
-    private JPanel panelOpciones() {
+    public JPanel panelOpciones() {
         JPanel p = new JPanel(new GridLayout(1, DIFICULTADES.length, 18, 0));
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(20, 30, 10, 30));
@@ -111,7 +111,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
     }
 
     // ── Cada tarjeta de dificultad ───────────────────────────────────────────
-    private JPanel crearTarjeta(String nombre, String descripcion,
+    public JPanel crearTarjeta(String nombre, String descripcion,
                                 String emoji, Color acento, String ruta) {
 
         JPanel carta = new JPanel(new BorderLayout()) {
@@ -207,7 +207,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
     }
 
     // ── Botón volver ─────────────────────────────────────────────────────────
-    private JPanel panelVolver() {
+    public JPanel panelVolver() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(0, 20, 10, 0));
@@ -226,17 +226,10 @@ public class VentanaDificultadPasapalabras extends JFrame {
     }
 
     // ── Lanza el juego con la ruta seleccionada ──────────────────────────────
-    private void iniciarJuego(String ruta) {
+    public void iniciarJuego(String ruta) {
         dispose(); // cierra esta ventana
         VentanaPasapalabra.abrir(jugador, ruta);
     }
 
-    // ── Método estático llamado desde VentanaMenu ──────────────────────────────
-    /**
-     * Abre la pantalla de selección de dificultad.
-     * Llamado desde VentanaMenu.abrirJuego("pasapalabra").
-     */
-    public static void abrir(Jugador jugador) {
-        SwingUtilities.invokeLater(() -> new VentanaDificultadPasapalabras(jugador));
-    }
+
 }

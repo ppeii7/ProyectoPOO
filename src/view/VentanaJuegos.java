@@ -267,9 +267,8 @@ public class VentanaJuegos extends JFrame {
         switch (tipo) {
             case "pasapalabra":
                 // Pasapalabra tiene pantalla de dificultad propia
-                VentanaDificultadPasapalabras.abrir(jugador);
+                controlJuego.abrirVentanaPasapalabra(jugador);
                 break;
-
             case "snake":
                 // Snake sigue el mismo patrón: controlador monta el MVC y abre la ventana
                 controlJuego.abrirVentanaSnake();

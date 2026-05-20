@@ -25,15 +25,12 @@ public abstract class Juego {
 
     public abstract String procesarTurno(Jugador jugador, String entrada);
 
-
     public abstract boolean isPartidaTerminada();
-
 
     public abstract int getPuntuacion(Jugador jugador);
 
     public abstract Jugador getGanador();
 
-   
     public abstract String getEstadoVisible();
 
     // --- Getters ---

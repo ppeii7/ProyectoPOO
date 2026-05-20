@@ -68,6 +68,7 @@ public class Partida{
 	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
+	
 	public int getNPartida() {
 		return nPartida;
 	}

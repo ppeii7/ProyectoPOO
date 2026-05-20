@@ -108,7 +108,7 @@ public class ControlApp {
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
             } else if (usuarios[u].getPassword().equals(contrasena)) {
                 if (usuarios[u].getUsername().equalsIgnoreCase("admin")) {
-                	SwingUtilities.invokeLater(() -> new VentanaAdmin().setVisible(true));
+                	abrirVentanaAdmin();
                 	} else {
                     usuarioActual = usuarios[u];
                     abrirJuego(usuarios[u]);
@@ -133,7 +133,6 @@ public class ControlApp {
     public  String getContraseñaActual() {
     	return usuarioActual.getPassword();
     }
-    
     
     public void abrirRegistro() {
         // Ahora pasa 'this' para que VentanaRegistro pueda llamar a registrarUsuario()

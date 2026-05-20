@@ -1,69 +1,73 @@
 package control;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import model.*;
 import view.*;
+import view.pasapalabra.VentanaDificultadPasapalabras;
 import view.tresenraya.VentanaRegistroTresEnRaya;
-
 
 public class ControlJuego {
 
-    private final ControlApp controlApp;
+	private final ControlApp controlApp;
 
-    public ControlJuego(ControlApp controlApp) {
-        this.controlApp = controlApp;
-    }
-    // ── Snake ────────────────────────────────────────────────────────────────
-    public void abrirVentanaSnake() {
-        JFrame ventana = new JFrame("Snake");
-        ventana.setSize(616, 700);
-        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ventana.setLocationRelativeTo(null);
-        ventana.setResizable(false);
+	public ControlJuego(ControlApp controlApp) {
+		this.controlApp = controlApp;
+	}
 
-        ModeloSnake  modelo     = new ModeloSnake();
-        VentanaSnake vista      = new VentanaSnake(modelo);
-        ControlSnake controlador = new ControlSnake(modelo, vista);
+	// ── Snake ────────────────────────────────────────────────────────────────
+	public void abrirVentanaSnake() {
+		JFrame ventana = new JFrame("Snake");
+		ventana.setSize(616, 700);
+		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		ventana.setLocationRelativeTo(null);
+		ventana.setResizable(false);
 
-        ventana.add(vista);
-        ventana.setVisible(true);
-    }
+		ModeloSnake modelo = new ModeloSnake();
+		VentanaSnake vista = new VentanaSnake(modelo);
+		ControlSnake controlador = new ControlSnake(modelo, vista);
 
-    // ── Pong ─────────────────────────────────────────────────────────────────
-    public void abrirVentanaPong() {
-        JFrame ventana = new JFrame("Pong");
-        ventana.setSize(600, 400);
-        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ventana.setLocationRelativeTo(null);
-        ventana.setResizable(false);
+		ventana.add(vista);
+		ventana.setVisible(true);
+	}
 
-        // Pregunta al jugador si quiere jugar contra la CPU o contra otro jugador
-        String[] opciones = {"Contra la CPU", "Dos jugadores"};
-        int eleccion = javax.swing.JOptionPane.showOptionDialog(
-            null,
-            "¿Cómo quieres jugar al Pong?",
-            "Modo de juego",
-            javax.swing.JOptionPane.DEFAULT_OPTION,
-            javax.swing.JOptionPane.QUESTION_MESSAGE,
-            null, opciones, opciones[0]);
+	// ── Pong ─────────────────────────────────────────────────────────────────
+	public void abrirVentanaPong() {
+		JFrame ventana = new JFrame("Pong");
+		ventana.setSize(600, 400);
+		ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		ventana.setLocationRelativeTo(null);
+		ventana.setResizable(false);
 
-        if (eleccion < 0) return; // canceló
+		// Pregunta al jugador si quiere jugar contra la CPU o contra otro jugador
+		String[] opciones = { "Contra la CPU", "Dos jugadores" };
+		int eleccion = javax.swing.JOptionPane.showOptionDialog(null, "¿Cómo quieres jugar al Pong?", "Modo de juego",
+				javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE, null, opciones,
+				opciones[0]);
 
-        boolean modoCPU = (eleccion == 0);
+		if (eleccion < 0)
+			return; // canceló
 
-        ModeloPong  modelo      = new ModeloPong(modoCPU);
-        VentanaPong vista       = new VentanaPong(modelo);
-        ControlPong controlador = new ControlPong(modelo, vista);
+		boolean modoCPU = (eleccion == 0);
 
-        ventana.add(vista);
-        ventana.setVisible(true);
-    }
+		ModeloPong modelo = new ModeloPong(modoCPU);
+		VentanaPong vista = new VentanaPong(modelo);
+		ControlPong controlador = new ControlPong(modelo, vista);
+
+		ventana.add(vista);
+		ventana.setVisible(true);
+	}
+	
+	public void abrirVentanaPasapalabra(Jugador jugador) {
+		VentanaDificultadPasapalabras vPasapalabra = new VentanaDificultadPasapalabras(jugador);
+		vPasapalabra.setVisible(true);;
+	}
 
 	public void abrirVentanaRegistroTresEnRaya() {
-		
+
 		VentanaRegistroTresEnRaya vregistro = new VentanaRegistroTresEnRaya(controlApp);
 		vregistro.setVisible(true);
 	}
-	
 
 }
