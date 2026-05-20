@@ -23,7 +23,7 @@ public class ModeloSnake extends Juego{
     	super("Snake", 1, 1);
         // Posición inicial
         snakeRow[0] = 4;
-        snakeCol[0] = 6;
+        snakeCol[0] = 3;
     }
 
     public void reiniciar() {
