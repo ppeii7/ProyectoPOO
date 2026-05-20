@@ -1,15 +1,24 @@
 package view;
 
 import javax.swing.*;
+
+import control.ControlApp;
+
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VentanaRegistro extends JFrame {
 
-	public VentanaRegistro() {
+	private ControlApp controlador;
 
+	public VentanaRegistro(ControlApp controlador) {
+
+		this.controlador= controlador;
+		
 		setTitle("Patata Caliente");
 		setSize(800, 600);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cierra la app al cerrar la ventana
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		setLocationRelativeTo(null); // Centra la ventana al centro
 
 		setLayout(new BorderLayout());
@@ -26,51 +35,51 @@ public class VentanaRegistro extends JFrame {
 	    gbc.insets = new Insets(10, 10, 10, 10);
 
 	    // Caja de texto usuario
-	    JTextField CajaUsuario = new JTextField("Nombre de usuario");
-	    CajaUsuario.setFont(fuente);
-	    CajaUsuario.setForeground(Color.GRAY);
-	    CajaUsuario.setPreferredSize(new Dimension(200, 30));
-	    CajaUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+	    JTextField cajaUsuario = new JTextField("Nombre de usuario");
+	    cajaUsuario.setFont(fuente);
+	    cajaUsuario.setForeground(Color.GRAY);
+	    cajaUsuario.setPreferredSize(new Dimension(200, 30));
+	    cajaUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
 	        public void focusGained(java.awt.event.FocusEvent e) {
-	            if (CajaUsuario.getText().equals("Nombre de usuario")) {
-	            	CajaUsuario.setText("");
-	            	CajaUsuario.setForeground(Color.BLACK);
+	            if (cajaUsuario.getText().equals("Nombre de usuario")) {
+	            	cajaUsuario.setText("");
+	            	cajaUsuario.setForeground(Color.BLACK);
 	            }
 	        }
 	        public void focusLost(java.awt.event.FocusEvent e) {
-	            if (CajaUsuario.getText().isEmpty()) {
-	            	CajaUsuario.setText("Nombre de usuario");
-	            	CajaUsuario.setForeground(Color.GRAY);
+	            if (cajaUsuario.getText().isEmpty()) {
+	            	cajaUsuario.setText("Nombre de usuario");
+	            	cajaUsuario.setForeground(Color.GRAY);
 	            }
 	        }
 	    });
 	    gbc.gridx = 0; gbc.gridy = 0;
-	    panelCentral.add(CajaUsuario, gbc);
+	    panelCentral.add(cajaUsuario, gbc);
 
 	 // Caja de contraseña
-	    JPasswordField CajaContraseña = new JPasswordField("Contraseña");
-	    CajaContraseña.setFont(fuente);
-	    CajaContraseña.setForeground(Color.GRAY);
-	    CajaContraseña.setEchoChar((char) 0); // ← añade esto aquí
-	    CajaContraseña.setPreferredSize(new Dimension(200, 30));
-	    CajaContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
+	    JPasswordField cajaContraseña = new JPasswordField("Contraseña");
+	    cajaContraseña.setFont(fuente);
+	    cajaContraseña.setForeground(Color.GRAY);
+	    cajaContraseña.setEchoChar((char) 0); // ← añade esto aquí
+	    cajaContraseña.setPreferredSize(new Dimension(200, 30));
+	    cajaContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
 	        public void focusGained(java.awt.event.FocusEvent e) {
-	            if (String.valueOf(CajaContraseña.getPassword()).equals("Contraseña")) {
-	                CajaContraseña.setText("");
-	                CajaContraseña.setForeground(Color.BLACK);
-	                CajaContraseña.setEchoChar('•'); // ← activa puntos al escribir
+	            if (String.valueOf(cajaContraseña.getPassword()).equals("Contraseña")) {
+	            	cajaContraseña.setText("");
+	            	cajaContraseña.setForeground(Color.BLACK);
+	            	cajaContraseña.setEchoChar('•'); // ← activa puntos al escribir
 	            }
 	        }
 	        public void focusLost(java.awt.event.FocusEvent e) {
-	            if (String.valueOf(CajaContraseña.getPassword()).isEmpty()) {
-	                CajaContraseña.setText("Contraseña");
-	                CajaContraseña.setForeground(Color.GRAY);
-	                CajaContraseña.setEchoChar((char) 0); // ← desactiva puntos al volver placeholder
+	            if (String.valueOf(cajaContraseña.getPassword()).isEmpty()) {
+	            	cajaContraseña.setText("Contraseña");
+	            	cajaContraseña.setForeground(Color.GRAY);
+	                cajaContraseña.setEchoChar((char) 0); // ← desactiva puntos al volver placeholder
 	            }
 	        }
 	    });
 	    gbc.gridx = 0; gbc.gridy = 1;
-	    panelCentral.add(CajaContraseña, gbc);
+	    panelCentral.add(cajaContraseña, gbc);
 
 
 	    // Botón registrarse
@@ -81,6 +90,18 @@ public class VentanaRegistro extends JFrame {
 	    panelCentral.add(btnRegistro, gbc);
 
 	    add(panelCentral, BorderLayout.CENTER);
+	    
+	    btnRegistro.addMouseListener(new MouseAdapter() {
+	    	
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		String pass = String.valueOf(cajaContraseña.getPassword());
+	    		controlador.registrarUsuario(cajaUsuario.getText(),pass);
+	    		
+	    		dispose();
+	    	}
+	    });
 	}
-}
+	}
+
 
