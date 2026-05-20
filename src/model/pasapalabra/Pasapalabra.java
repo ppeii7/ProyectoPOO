@@ -51,15 +51,15 @@ public class Pasapalabra extends Juego {
      */
     public void guardarProgreso() {
         try {
-            String ruta = ".\\Data\\Progreso_" + jugadorActual.getUsername() + ".txt";
-            PrintWriter pw = new PrintWriter(new FileWriter(ruta, false));
+            String ruta = ".\\Data\\Progreso_" + jugadorActual.getUsername() + ".txt"; //Crea el nombre del fichero con el progreso del usuario
+            PrintWriter pw = new PrintWriter(new FileWriter(ruta, false)); //Crea el fichero y escribe en el
             pw.println("ruta;"     + rutaFichero);
-            pw.println("indice;"   + rosco.getIndiceActual());
+            pw.println("indice;"   + rosco.getIndiceActual()); // Cuantas preguntas llevaba contestadas
             pw.println("aciertos;" + aciertos);
             pw.println("fallos;"   + fallos);
             for (Preguntas p : rosco.getPreguntas()) {
                 if (p != null) {
-                    pw.println(p.getLetra() + ";" + p.getEstado().name());
+                    pw.println(p.getLetra() + ";" + p.getEstado().name()); // escribe la letra de la pregunta y si la acerto fallo o paso
                 }
             }
             pw.close();
@@ -74,26 +74,25 @@ public class Pasapalabra extends Juego {
      */
     public void cargarProgreso() {
         try {
-            String ruta = ".\\Data\\Progreso_" + jugadorActual.getUsername() + ".txt";
-            Scanner sc = new Scanner(new File(ruta));
+            String ruta = ".\\Data\\Progreso_" + jugadorActual.getUsername() + ".txt"; 
+            Scanner sc = new Scanner(new File(ruta)); //Busca la ruta del progreso del usuario
             while (sc.hasNextLine()) {
                 String   linea  = sc.nextLine().trim();
                 String[] partes = linea.split(";", 2);
-                if (partes.length < 2) continue;
+                if (partes.length < 2) continue; // Se asegura que no haya nada escrito imprevisto
 
-                switch (partes[0]) {
+                switch (partes[0]) { // la flecha "->" sirve para tenerlo mas organizado y no tener que usar el "break;"
                     case "ruta"     -> { /* ya cargada en constructor */ }
                     case "indice"   -> rosco.setIndiceActual(Integer.parseInt(partes[1]));
                     case "aciertos" -> this.aciertos = Integer.parseInt(partes[1]);
                     case "fallos"   -> this.fallos   = Integer.parseInt(partes[1]);
-                    default -> {
-                        // línea tipo: A;ACERTADA
-                        if (partes[0].length() == 1) {
+                    default -> { // línea de letra como: A;ACERTADA
+                        if (partes[0].length() == 1) { //SE asegura que solo sea un caracter
                             char              letra  = partes[0].charAt(0);
                             EstadoPreguntas   estado = EstadoPreguntas.valueOf(partes[1]);
                             for (Preguntas p : rosco.getPreguntas()) {
                                 if (p != null && p.getLetra() == letra) {
-                                    p.setEstado(estado);
+                                    p.setEstado(estado); //va metiendo los estados de las preguuntas ya contestadas
                                     break;
                                 }
                             }

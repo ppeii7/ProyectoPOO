@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
-public class Partida{
+public class Partida{ //para tres en raya
 	
 	
 	private Jugador j1;

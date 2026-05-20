@@ -8,7 +8,7 @@ import view.pasapalabra.VentanaDificultadPasapalabras;
 import view.pasapalabra.VentanaPasapalabra;
 import view.tresenraya.VentanaRegistroTresEnRaya;
 
-public class ControlJuego {
+public class ControlJuego { // Codigo para abrir ventanas de otros juegos
 
 	private final ControlApp controlApp;
 
@@ -44,14 +44,14 @@ public class ControlJuego {
 		String[] opciones = { "Contra la CPU", "Dos jugadores" };
 		int eleccion = javax.swing.JOptionPane.showOptionDialog(null, "¿Cómo quieres jugar al Pong?", "Modo de juego",
 				javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE, null, opciones,
-				opciones[0]);
+				opciones[0]); // abre una ventana dandote dos opciones que depende de lo que escogas te devuelve un entero
 
-		if (eleccion < 0)
-			return; // canceló
+		if (eleccion < 0) 
+			return; // cerro la miniventana (-1)
 
-		boolean modoCPU = (eleccion == 0);
+		boolean modoCPU = (eleccion == 0); //saca un booleano para ver si escogio contra cpu(0) o contra otro jugador(1)
 
-		ModeloPong modelo = new ModeloPong(modoCPU);
+		ModeloPong modelo = new ModeloPong(modoCPU); // si el booleano es falso juagara contra otra persona
 		VentanaPong vista = new VentanaPong(modelo);
 		ControlPong controlador = new ControlPong(modelo, vista);
 
@@ -89,7 +89,7 @@ public class ControlJuego {
     new VentanaDificultadPasapalabras(jugador).setVisible(true);
 }
 
-	public void abrirVentanaRegistroTresEnRaya() {
+	public void abrirVentanaRegistroTresEnRaya() { // Ventana de admin para ver stats en 3 en raya
 
 		VentanaRegistroTresEnRaya vregistro = new VentanaRegistroTresEnRaya(controlApp);
 		vregistro.setVisible(true);

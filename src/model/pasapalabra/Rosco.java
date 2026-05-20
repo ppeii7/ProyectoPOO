@@ -35,8 +35,8 @@ public class Rosco {
                 String[] partes = linea.split(";");
                 if (partes.length == 3) {
                     char letra = partes[0].trim().toUpperCase().charAt(0);
-                    int idx = letra - 'A';
-                    if (idx >= 0 && idx < NUM_LETRAS && contadores[idx] < MAX_POR_LETRA) {
+                    int idx = letra - 'A'; // Saca el indice restando con los valores ascii
+                    if (idx >= 0 && idx < NUM_LETRAS && contadores[idx] < MAX_POR_LETRA) { // Asegura que la letra sea valida y que no haya pasado el maximo de posibles preguntas
                         opciones[idx][contadores[idx]] = new Preguntas(
                             letra, partes[1].trim(), partes[2].trim());
                         contadores[idx]++;
@@ -48,7 +48,7 @@ public class Rosco {
         }
 
         Random rand = new Random();
-        for (int i = 0; i < NUM_LETRAS; i++) {
+        for (int i = 0; i < NUM_LETRAS; i++) { //Escoge la pregunta al azar
             if (contadores[i] > 0) {
                 preguntas[i] = opciones[i][rand.nextInt(contadores[i])];
             }
@@ -58,7 +58,7 @@ public class Rosco {
     public Preguntas getSiguientePregunta() {
         int total = preguntas.length;
         for (int i = 0; i < total; i++) {
-            int pos = (indiceActual + i) % total;
+            int pos = (indiceActual + i) % total; // para no pasarse del tamaño del array de preguntas
             Preguntas p = preguntas[pos];
             if (p != null &&
                (p.getEstado() == EstadoPreguntas.PENDIENTE ||
@@ -81,7 +81,7 @@ public class Rosco {
         int count = 0;
         for (int i = 0; i < preguntas.length; i++) {
             if (preguntas[i] != null &&
-               (preguntas[i].getEstado() == EstadoPreguntas.PENDIENTE ||
+                (preguntas[i].getEstado() == EstadoPreguntas.PENDIENTE ||
                 preguntas[i].getEstado() == EstadoPreguntas.PASADA)) {
                 count++;
             }

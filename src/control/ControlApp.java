@@ -1,13 +1,12 @@
 package control;
 
-import javax.swing.*;
-import model.Jugador;
-import model.Usuario;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import javax.swing.*;
+import model.Jugador;
+import model.Usuario;
 import view.*;
 import view.admin.VentanaAdmin;
 
@@ -36,12 +35,12 @@ public class ControlApp {
                 Scanner sc = new Scanner(userF);
                 while (sc.hasNextLine()) {
                     String linea = sc.nextLine().trim();
-                    if (!linea.isEmpty()) lineas.add(linea); // ignora vacías
+                    if (!linea.isEmpty()) lineas.add(linea); // Si la linea no esta vacia la añade
                 }
                 sc.close();
             }
 
-            // Añadir el nuevo usuario
+            // Añadir el nuevo usuario a la lista
             lineas.add(username + ";" + contrasena);
 
             // Reescribir el fichero limpio
@@ -59,11 +58,11 @@ public class ControlApp {
     private boolean usuarioExiste(String username) {
         try {
             File userF = new File(".\\Data\\Users.txt");
-            if (!userF.exists()) return false;
+            if (!userF.exists()) return false; // si el archivo no existe devuelve falso
             Scanner sc = new Scanner(userF);
             while (sc.hasNextLine()) {
-                String[] campos = sc.nextLine().split(";");
-                if (campos.length > 0 && campos[0].equalsIgnoreCase(username)) {
+                String[] campos = sc.nextLine().split(";"); //separa entre campos para leer usuario
+                if (campos.length > 0 && campos[0].equalsIgnoreCase(username)) { 
                     sc.close();
                     return true;
                 }
@@ -100,7 +99,7 @@ public class ControlApp {
             for (int i = 0; i < x; i++) {
                 if (usuarios[i].getUsername().equalsIgnoreCase(username)) {
                     u = i;
-                    break;
+                    break; // En cuanto encuentra al usuario lo iguala a otra su indice y sale del bucle
                 }
             }
 
@@ -108,10 +107,10 @@ public class ControlApp {
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
             } else if (usuarios[u].getPassword().equals(contrasena)) {
                 if (usuarios[u].getUsername().equalsIgnoreCase("admin")) {
-                	abrirVentanaAdmin();
+                	abrirVentanaAdmin(); // Si el usuario es el admin abre la ventana de admin(stats de tres en raya)
                 	} else {
                     usuarioActual = usuarios[u];
-                    abrirJuego(usuarios[u]);
+                    abrirJuego(usuarios[u]); // si usuario y contraseña son correctos abre el menu de juegos
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");

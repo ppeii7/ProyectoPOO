@@ -64,7 +64,7 @@ public class ModeloPong extends Juego{
         if(y2<0) y2=0;
         if(y2>270) y2=270;
         
-        if(bola.intersects(rect1)) {
+        if(bola.intersects(rect1)) { //Cada vez que la bola choque cambia de direccion y aumenta velocidad
             velocidadXB*=-1 ;
             velocidadXB+=1 ;
         }
@@ -77,7 +77,7 @@ public class ModeloPong extends Juego{
         if(xB<0) {
             ptos2++;
             xB=270; yB=100; velocidadXB=5;
-            if(modoCPU) { y1=100; y2=100; } // Reseteo extra que tenías en CPU
+            if(modoCPU) { y1=100; y2=100; }
         }
         if (xB>x2) { 
             ptos1++;

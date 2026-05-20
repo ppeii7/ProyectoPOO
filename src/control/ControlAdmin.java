@@ -36,12 +36,12 @@ public class ControlAdmin {
 
 			Scanner sc = new Scanner(f);
 			while (sc.hasNextLine() && total < MAX) {
-				String linea = sc.nextLine().trim();
+				String linea = sc.nextLine().trim(); //.trim() quita el enter/espacios del final de la frase
 				if (linea.isEmpty())
-					continue;
+					continue; // Este hace que si la linea esta vacia entonces se salte todo lo que falte por ejecutar en el bucle y vuelve a otra iteracion
 
-				String[] campos = linea.split(";");
-				if (campos.length >= 5) {
+				String[] campos = linea.split(";"); // Separo cada ';' y lo pongo separo para cada cosa
+				if (campos.length >= 5) { 
 					nPartidas[total] = Integer.parseInt(campos[0].trim());
 					jugador1s[total] = campos[1].trim();
 					jugador2s[total] = campos[2].trim();
@@ -67,7 +67,7 @@ public class ControlAdmin {
 		int numJug = 0;
 
 		for (int i = 0; i < total; i++) {
-			String g = ganadores[i];
+			String g = ganadores[i]; // Busco a los ganadores
 			// ignorar empates (null o "null")
 			if (g == null || g.equalsIgnoreCase("null") || g.isEmpty())
 				continue;
@@ -76,42 +76,42 @@ public class ControlAdmin {
 			int idx = -1;
 			for (int j = 0; j < numJug; j++) {
 				if (jugadores[j].equalsIgnoreCase(g)) {
-					idx = j;
+					idx = j; // Si ya esta en el ranking igualo idx al numero d jugador
 					break;
 				}
 			}
-			if (idx == -1) {
+			if (idx == -1) { // Si no estaba ya en el ranking de jugadores lo añado y le pongo una victoria y sumo el numero de jugadores
 				jugadores[numJug] = g;
 				victorias[numJug] = 1;
 				numJug++;
 			} else {
-				victorias[idx]++;
+				victorias[idx]++; // Si ya estaba en el ranking le sumo una victoria
 			}
 		}
 
 		// Ordenar de mayor a menor victorias (burbuja)
-		for (int i = 0; i < numJug - 1; i++) {
-			for (int j = 0; j < numJug - i - 1; j++) {
-				if (victorias[j] < victorias[j + 1]) {
-					int tmpI = victorias[j];
-					victorias[j] = victorias[j + 1];
+		for (int i = 0; i < numJug - 1; i++) { // Hago el bucle segun la cantidad de jugadores
+			for (int j = 0; j < numJug - i - 1; j++) { // Este bucle busca el mas pequeño y lo pone hasta abajo por lo que ya no tiene que llegar hasta ahi por eso añadimos el "- i"
+				if (victorias[j] < victorias[j + 1]) { // Si el que estamos viendo es menor que el siguiente
+					int tmpI = victorias[j]; // guarda la cantidad de victorias en un numero vacio
+					victorias[j] = victorias[j + 1]; // intercambia valores entre el que estamos viendo y el siguiente
 					victorias[j + 1] = tmpI;
-					String tmpS = jugadores[j];
+					String tmpS = jugadores[j]; // Lo mismo que antes pero ahora con el jugador en lugar de las victorias
 					jugadores[j] = jugadores[j + 1];
 					jugadores[j + 1] = tmpS;
 				}
 			}
 		}
 
-		// Recortar arrays al tamaño real
-		String[] jTrim = new String[numJug];
+		// Recortar arrays al tamaño real (para que no tenga el tamaño maximo (500))
+		String[] jTrim = new String[numJug]; //Creo los arrays con la cantidad de jugadores
 		int[] vTrim = new int[numJug];
 		for (int i = 0; i < numJug; i++) {
-			jTrim[i] = jugadores[i];
+			jTrim[i] = jugadores[i]; //igualo cada valor de los arrays
 			vTrim[i] = victorias[i];
 		}
 
-		return new Object[] { jTrim, vTrim };
+		return new Object[] { jTrim, vTrim }; // Devuelvo los arrays con el tamaño real
 	}
 
 	// ── Cuenta cuántas partidas terminaron en empate ─────────────────────────

@@ -2,11 +2,8 @@ package control;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 import model.Jugador;
 import model.Partida;
 import model.TresEnRaya;
@@ -19,8 +16,8 @@ public class ControlTresEnRaya {
 	private TresEnRaya modelo;
 	private VentanaTresEnRaya vista;
 
-	// ── Autenticación ────────────────────────────────────────────────────────
-	public Jugador autenticarJugador(String username, String contrasena) {
+	// ── Autenticación del segundo jugador ────────────────────────────────────────────────────────
+	public Jugador autenticarJugador(String username, String contrasena) { 
 		try {
 			java.io.File userF = new java.io.File(".\\Data\\Users.txt");
 			if (!userF.exists())

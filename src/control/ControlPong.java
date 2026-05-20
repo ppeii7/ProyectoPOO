@@ -29,7 +29,7 @@ public class ControlPong implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {    
+    public void keyPressed(KeyEvent e) {
         int tecla = e.getKeyCode();
         
         // Las teclas W y S siempre controlan al jugador 1
@@ -47,16 +47,16 @@ public class ControlPong implements ActionListener, KeyListener {
         }
         
         if (tecla == KeyEvent.VK_ESCAPE) {
-            if (timer.isRunning()) timer.stop(); 
-            else if (!modelo.juegoTerminado) timer.start();
+            if (timer.isRunning()) timer.stop(); //pausa el juego/para el tiempo, si no esta pausado ya
+            else if (!modelo.juegoTerminado) timer.start(); // Si ya estaba pausado reanuda el juego
         }
         
-        if (tecla == KeyEvent.VK_R && !timer.isRunning()) {
+        if (tecla == KeyEvent.VK_R && !timer.isRunning()) { // Si el juego esta pausado y picas 'R' se reinicia
             modelo.reiniciar();
             timer.start();
         }
         
-        if(!timer.isRunning() && !modelo.juegoTerminado) {
+        if(!timer.isRunning() && !modelo.juegoTerminado) { // Si esta en pausa o no ha empezado y picas alguna tecla de moverte se reanuda el juego
             if(tecla == KeyEvent.VK_UP || tecla == KeyEvent.VK_DOWN || tecla == KeyEvent.VK_W || tecla == KeyEvent.VK_S) {
                 timer.start();
             }
@@ -67,7 +67,7 @@ public class ControlPong implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         int tecla = e.getKeyCode();
         
-        if (tecla == KeyEvent.VK_W || tecla == KeyEvent.VK_S) modelo.velocidadY1 = 0; 
+        if (tecla == KeyEvent.VK_W || tecla == KeyEvent.VK_S) modelo.velocidadY1 = 0;  // En cuanto sueltes la tecla la pala se para
         
         if (tecla == KeyEvent.VK_UP || tecla == KeyEvent.VK_DOWN) {
             if (modelo.modoCPU) modelo.velocidadY1 = 0;

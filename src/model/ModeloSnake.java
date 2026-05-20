@@ -40,16 +40,16 @@ public class ModeloSnake extends Juego{
         tiempoZoom = 0;
     }
 
-    public void sincronizarSerpiente() {
-        int n = 10; 
-        for (int i = 0; i < snakeLength; i++) {
+    public void sincronizarSerpiente() { //para cuando se gira el mapa
+        int n = 10;
+        for (int i = 0; i < snakeLength; i++) { //gira el cuerpo de la serpiente
             int viejaFila = snakeRow[i];
             int viejaCol = snakeCol[i];
             
-            snakeRow[i] = viejaCol;          
-            snakeCol[i] = n - 1 - viejaFila; 
+            snakeRow[i] = viejaCol; //la nueva fila pasa a ser la columna de antes
+            snakeCol[i] = n - 1 - viejaFila; // y la nueva columna pasa a ser el tamaño del mapa menos 1(pared) menos la fila de antes
         }
-        int viejaDirRow = dirRow;
+        int viejaDirRow = dirRow; //Cambio la direccion a la que va la serpiente
         dirRow = dirCol;
         dirCol = -viejaDirRow;
 
@@ -70,7 +70,7 @@ public class ModeloSnake extends Juego{
         int newCol = snakeCol[0] + dirCol;
 
         int cell = mapa.mapa[newRow][newCol];
-        if (cell == 1 || cell == 2 || cell == 3) { 
+        if (cell == 1 || cell == 2 || cell == 3) {
             crash = true;
             return;
         }
@@ -79,38 +79,40 @@ public class ModeloSnake extends Juego{
 
         if (ateApple) {
             ptos++;
-            snakeLength = Math.min(snakeLength + 1, MAX_LENGTH); 
+            snakeLength = Math.min(snakeLength + 1, MAX_LENGTH);  //Aumentamos el tamaño de la serpiente
             mapa.nuevaManzana(); 
         } else {
-            mapa.mapa[snakeRow[snakeLength - 1]][snakeCol[snakeLength - 1]] = 0;
+            mapa.mapa[snakeRow[snakeLength - 1]][snakeCol[snakeLength - 1]] = 0; //Si no comio manzana quitamos la ultima parte de la serpiente
         }
 
-        if (cell == 6) {
+        if (cell == 6) { //Si come una manzana de zoom se cambia el tamaño de las casillas aleatoriamente por 5 segundos
             Random rand = new Random();
             CELL_SIZE = rand.nextInt(30,60);
-            tiempoZoom = 33; 
+            tiempoZoom = 33;   // Definí que se actualize el mapa cada 150ms 
+            // y quiero hacer que el zoom dure 5 seg --> 5000ms/150ms = 33,3 --> 33
         }
 
-        for (int i = snakeLength - 1; i > 0; i--) {
+        for (int i = snakeLength - 1; i > 0; i--) { // La parte de la serpiente pasa a la posicion donde estaba la siguiente parte
             snakeRow[i] = snakeRow[i - 1];
             snakeCol[i] = snakeCol[i - 1];
-        }
+        } 
 
-        snakeRow[0] = newRow;
+        snakeRow[0] = newRow;// La nueva parte de la serpiente es la cabeza
         snakeCol[0] = newCol;
 
+        //Actualizo el mapa
         if (snakeLength > 1) {
             mapa.mapa[snakeRow[1]][snakeCol[1]] = 3;
         }
-        mapa.mapa[snakeRow[0]][snakeCol[0]] = 2;
+        mapa.mapa[snakeRow[0]][snakeCol[0]] = 2; 
 
-        if (cell == 5) { 
+        if (cell == 5) {  // Si come una manzana de giro
             mapa.giroMapa();
             sincronizarSerpiente();
         }
 
         if (tiempoZoom == 0) {
-            CELL_SIZE = 60;
+            CELL_SIZE = 60; //cuando se acaba el efecto del zoom vuelve al tamaño normal
         }
         if (tiempoZoom > 0) {
             tiempoZoom--;
