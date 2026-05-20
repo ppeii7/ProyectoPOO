@@ -36,7 +36,7 @@ public class ModeloSnake extends Juego{
 
         mapa = new MapaSnake(); // Reiniciamos el mapa
         snakeRow[0] = 4;
-        snakeCol[0] = 6;
+        snakeCol[0] = 3;
         tiempoZoom = 0;
     }
 
