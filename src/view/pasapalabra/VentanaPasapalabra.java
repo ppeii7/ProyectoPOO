@@ -1,18 +1,15 @@
 package view.pasapalabra;
 
 import control.ControladorPasapalabra;
-import model.Jugador;
-import model.pasapalabra.EstadoPreguntas;
-import model.pasapalabra.Pasapalabra;
-import model.pasapalabra.Preguntas;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import model.Jugador;
+import model.pasapalabra.Pasapalabra;
+import model.pasapalabra.Preguntas;
 
 /**
  * Vista del juego Pasapalabra.
@@ -246,6 +243,20 @@ public class VentanaPasapalabra extends JFrame {
             vista.setVisible(true);
         });
     }
+
+    /**
+ * Carga una partida previamente guardada para el jugador y la muestra.
+ * Llamado desde ControlJuego cuando el usuario elige continuar.
+ */
+public static void abrirConProgreso(Jugador jugador, String rutaFichero) {
+    SwingUtilities.invokeLater(() -> {
+        Pasapalabra modelo = new Pasapalabra(jugador, rutaFichero);
+        modelo.cargarProgreso();                        // ← restaura estados
+        VentanaPasapalabra vista = new VentanaPasapalabra(jugador);
+        new ControladorPasapalabra(modelo, vista);
+        vista.setVisible(true);
+    });
+}
 
     // ══════════════════════════════════════════════════════════════════════════
     // Panel interno que pinta el rosco circular

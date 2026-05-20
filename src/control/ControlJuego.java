@@ -1,11 +1,11 @@
 package control;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
 import model.*;
+import model.pasapalabra.Pasapalabra;
 import view.*;
 import view.pasapalabra.VentanaDificultadPasapalabras;
+import view.pasapalabra.VentanaPasapalabra;
 import view.tresenraya.VentanaRegistroTresEnRaya;
 
 public class ControlJuego {
@@ -60,9 +60,34 @@ public class ControlJuego {
 	}
 	
 	public void abrirVentanaPasapalabra(Jugador jugador) {
-		VentanaDificultadPasapalabras vPasapalabra = new VentanaDificultadPasapalabras(jugador);
-		vPasapalabra.setVisible(true);;
-	}
+
+    // ¿Hay una partida guardada para este usuario?
+    if (Pasapalabra.hayProgresoGuardado(jugador.getUsername())) {
+
+        int opcion = javax.swing.JOptionPane.showConfirmDialog(
+            null,
+            "Tienes una partida guardada.\n¿Quieres continuar donde lo dejaste?",
+            "Partida guardada",
+            javax.swing.JOptionPane.YES_NO_OPTION,
+            javax.swing.JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+            // Cargar la ruta guardada y reanudar directamente
+            String rutaGuardada = Pasapalabra.getRutaGuardada(jugador.getUsername());
+            if (rutaGuardada != null) {
+                VentanaPasapalabra.abrirConProgreso(jugador, rutaGuardada);
+                return;
+            }
+        } else {
+            // El jugador descarta la partida guardada
+            Pasapalabra.eliminarProgreso(jugador.getUsername());
+        }
+    }
+
+    // Sin partida guardada (o descartada): mostrar pantalla de dificultad
+    new VentanaDificultadPasapalabras(jugador).setVisible(true);
+}
 
 	public void abrirVentanaRegistroTresEnRaya() {
 

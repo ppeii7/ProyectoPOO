@@ -1,10 +1,6 @@
 package control;
 
-import java.awt.event.MouseListener;
-import java.awt.event.TextListener;
-
 import javax.swing.SwingUtilities;
-
 import view.VentanaPrincipal;
 
 public class Main {

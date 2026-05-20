@@ -88,4 +88,6 @@ public class Rosco {
         }
         return count;
     }
+    public int getIndiceActual() { return indiceActual; }
+    public void setIndiceActual(int idx) { this.indiceActual = idx; }
 }
