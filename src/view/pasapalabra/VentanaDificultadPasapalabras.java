@@ -8,54 +8,20 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 
-/**
- * Pantalla de selección de dificultad para Pasapalabra.
- * Se abre entre VistaMenu y VistaPasapalabra.
- *
- * Flujo: VistaMenu → VistaDificultad → VistaPasapalabra
- */
 public class VentanaDificultadPasapalabras extends JFrame {
 
-    // ── Colores ──────────────────────────────────────────────────────────────
-    public static final Color FONDO = new Color(12, 12, 40);
+    public static final Color FONDO = new Color(245, 245, 220); // beige
 
-    // ── Definición de dificultades ───────────────────────────────────────────
-    // { etiqueta, descripción, emoji, color, ruta del fichero }
     public static final Object[][] DIFICULTADES = {
-        {
-            "FÁCIL",
-            "Preguntas sencillas para\nempezar a jugar",
-            "😊",
-            new Color(30, 180, 60),
-            ".\\data\\RoscoFacil.txt"
-        },
-        {
-            "MEDIO",
-            "Un reto equilibrado\npara jugadores habituales",
-            "🤔",
-            new Color(220, 160, 0),
-            ".\\data\\RoscoMedio.txt"
-        },
-        {
-            "DIFÍCIL",
-            "Preguntas complicadas\npara los más expertos",
-            "🔥",
-            new Color(200, 40, 40),
-            ".\\data\\RoscoDifícil.txt"
-        },
-        {
-            "DISNEY",
-            "Solo películas y personajes\ndel universo Disney",
-            "✨",
-            new Color(80, 60, 220),
-            ".\\data\\RoscoDisney.txt"
-        }
+        { "FÁCIL",   "😊", new Color(120, 180, 120), ".\\data\\RoscoFacil.txt"    },
+        { "MEDIO",   "🤔", new Color(210, 170,  80), ".\\data\\RoscoMedio.txt"    },
+        { "DIFÍCIL", "🔥", new Color(200, 100, 100), ".\\data\\RoscoDifícil.txt"  },
+        { "DISNEY",  "✨", new Color(130, 110, 200), ".\\data\\RoscoDisney.txt"   }
     };
 
     private Jugador jugador;
 
-    // ────────────────────────────────────────────────────────────────────────
-    public  VentanaDificultadPasapalabras(Jugador jugador) {
+    public VentanaDificultadPasapalabras(Jugador jugador) {
         this.jugador = jugador;
 
         setTitle("Elige dificultad — Pasapalabra");
@@ -63,36 +29,34 @@ public class VentanaDificultadPasapalabras extends JFrame {
         getContentPane().setBackground(FONDO);
         setLayout(new BorderLayout());
 
-        add(panelTitulo(),      BorderLayout.NORTH);
-        add(panelOpciones(),    BorderLayout.CENTER);
-        add(panelVolver(),      BorderLayout.SOUTH);
+        add(panelTitulo(),   BorderLayout.NORTH);
+        add(panelOpciones(), BorderLayout.CENTER);
+        add(panelVolver(),   BorderLayout.SOUTH);
 
-        setSize(860, 480);
-        setMinimumSize(new Dimension(680, 380));
+        setSize(860, 420);
+        setMinimumSize(new Dimension(680, 360));
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    // ── Panel de título ──────────────────────────────────────────────────────
     public JPanel panelTitulo() {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(24, 40, 8, 40));
 
         JLabel titulo = new JLabel("PASAPALABRA", SwingConstants.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 30));
-        titulo.setForeground(Color.YELLOW);
+        titulo.setFont(new Font("Georgia", Font.BOLD, 30));
+        titulo.setForeground(new Color(180, 100, 0));
 
         JLabel sub = new JLabel("Selecciona la dificultad", SwingConstants.CENTER);
-        sub.setFont(new Font("Arial", Font.PLAIN, 14));
-        sub.setForeground(new Color(160, 160, 200));
+        sub.setFont(new Font("Arial", Font.PLAIN, 13));
+        sub.setForeground(new Color(150, 100, 50));
 
         p.add(titulo, BorderLayout.CENTER);
         p.add(sub,    BorderLayout.SOUTH);
         return p;
     }
 
-    // ── Panel con las tarjetas de dificultad ─────────────────────────────────
     public JPanel panelOpciones() {
         JPanel p = new JPanel(new GridLayout(1, DIFICULTADES.length, 18, 0));
         p.setBackground(FONDO);
@@ -102,17 +66,14 @@ public class VentanaDificultadPasapalabras extends JFrame {
             p.add(crearTarjeta(
                 (String) d[0],
                 (String) d[1],
-                (String) d[2],
-                (Color)  d[3],
-                (String) d[4]
+                (Color)  d[2],
+                (String) d[3]
             ));
         }
         return p;
     }
 
-    // ── Cada tarjeta de dificultad ───────────────────────────────────────────
-    public JPanel crearTarjeta(String nombre, String descripcion,
-                                String emoji, Color acento, String ruta) {
+    public JPanel crearTarjeta(String nombre, String emoji, Color acento, String ruta) {
 
         JPanel carta = new JPanel(new BorderLayout()) {
             @Override
@@ -120,7 +81,7 @@ public class VentanaDificultadPasapalabras extends JFrame {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                                     RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(new Color(25, 25, 70));
+                g2.setColor(new Color(255, 255, 240)); // crema
                 g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 18, 18));
                 g2.setColor(acento);
                 g2.setStroke(new BasicStroke(2.5f));
@@ -131,26 +92,18 @@ public class VentanaDificultadPasapalabras extends JFrame {
         carta.setBorder(new EmptyBorder(18, 16, 16, 16));
         carta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        // Emoji grande
+        // Emoji
         JLabel lblEmoji = new JLabel(emoji, SwingConstants.CENTER);
-        lblEmoji.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 36));
+        lblEmoji.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 34));
         lblEmoji.setAlignmentX(CENTER_ALIGNMENT);
 
-        // Nombre de la dificultad
+        // Nombre
         JLabel lblNombre = new JLabel(nombre, SwingConstants.CENTER);
-        lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-        lblNombre.setForeground(acento);
+        lblNombre.setFont(new Font("Courier New", Font.BOLD, 15));
+        lblNombre.setForeground(new Color(80, 50, 20));
         lblNombre.setAlignmentX(CENTER_ALIGNMENT);
 
-        // Descripción
-        JLabel lblDesc = new JLabel(
-            "<html><center>" + descripcion.replace("\n", "<br>") + "</center></html>",
-            SwingConstants.CENTER);
-        lblDesc.setFont(new Font("Arial", Font.PLAIN, 12));
-        lblDesc.setForeground(new Color(160, 160, 200));
-        lblDesc.setAlignmentX(CENTER_ALIGNMENT);
-
-        // Botón Jugar
+        // Botón
         JButton btn = new JButton("▶  JUGAR") {
             @Override
             protected void paintComponent(Graphics g) {
@@ -176,21 +129,19 @@ public class VentanaDificultadPasapalabras extends JFrame {
         wrapBtn.setOpaque(false);
         wrapBtn.add(btn);
 
-        // Montar contenido
         JPanel contenido = new JPanel();
         contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS));
         contenido.setOpaque(false);
+        contenido.add(Box.createVerticalGlue());
         contenido.add(lblEmoji);
         contenido.add(Box.createVerticalStrut(10));
         contenido.add(lblNombre);
-        contenido.add(Box.createVerticalStrut(6));
-        contenido.add(lblDesc);
-        contenido.add(Box.createVerticalGlue());
+        contenido.add(Box.createVerticalStrut(14));
         contenido.add(wrapBtn);
+        contenido.add(Box.createVerticalGlue());
 
         carta.add(contenido, BorderLayout.CENTER);
 
-        // Hover: encoge/crece el borde
         carta.addMouseListener(new MouseAdapter() {
             @Override public void mouseEntered(MouseEvent e) {
                 carta.setBorder(new EmptyBorder(16, 14, 14, 14));
@@ -206,7 +157,6 @@ public class VentanaDificultadPasapalabras extends JFrame {
         return carta;
     }
 
-    // ── Botón volver ─────────────────────────────────────────────────────────
     public JPanel panelVolver() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
         p.setBackground(FONDO);
@@ -214,10 +164,11 @@ public class VentanaDificultadPasapalabras extends JFrame {
 
         JButton btnVolver = new JButton("← Volver al menú");
         btnVolver.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnVolver.setForeground(new Color(160, 160, 200));
-        btnVolver.setBackground(new Color(30, 30, 70));
+        btnVolver.setForeground(new Color(150, 100, 50));
+        btnVolver.setBackground(new Color(230, 220, 190));
         btnVolver.setBorderPainted(false);
         btnVolver.setFocusPainted(false);
+        btnVolver.setOpaque(true);
         btnVolver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnVolver.addActionListener(e -> dispose());
 
@@ -225,11 +176,8 @@ public class VentanaDificultadPasapalabras extends JFrame {
         return p;
     }
 
-    // ── Lanza el juego con la ruta seleccionada ──────────────────────────────
     public void iniciarJuego(String ruta) {
-        dispose(); // cierra esta ventana
+        dispose();
         VentanaPasapalabra.abrir(jugador, ruta);
     }
-
-
 }

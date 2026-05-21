@@ -3,7 +3,6 @@ package view;
 import control.ControlApp;
 import control.ControlJuego;
 import model.Jugador;
-import view.pasapalabra.VentanaDificultadPasapalabras;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,62 +10,25 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 
-/**
- * Menú principal de la aplicación.
- * Muestra una tarjeta por cada juego disponible.
- *
- * Al pulsar "JUGAR" en una tarjeta:
- *  - Pasapalabra → VentanaDificultadPasapalabras.abrir(jugador)
- *  - Snake       → controlJuego.abrirVentanaSnake()
- *  - Pong        → controlJuego.abrirVentanaPong()
- *
- * El patrón es idéntico al del botón "Iniciar sesión" en VentanaPrincipal:
- * el click del botón llama a un método del controlador, que monta el MVC
- * y abre la ventana.
- */
 public class VentanaJuegos extends JFrame {
 
-    // ── Colores ──────────────────────────────────────────────────────────────
-    private static final Color FONDO       = new Color(12, 12, 40);
-    private static final Color FONDO_CARTA = new Color(25, 25, 70);
-    private static final Color TITULO_APP  = new Color(255, 220, 50);
+    private static final Color FONDO       = new Color(245, 245, 220); // beige igual que VentanaPrincipal
+    private static final Color FONDO_CARTA = new Color(255, 255, 240); // crema suave
+    private static final Color TITULO_APP  = new Color(180, 100, 0);   // naranja oscuro
 
-    // ── Datos de cada tarjeta: { nombre, descripción, color acento, tipo } ───
     private static final Object[][] JUEGOS = {
-        {
-            "PASAPALABRA",
-            "Recorre el rosco respondiendo\nuna pregunta por cada letra",
-            new Color(30, 120, 220),
-            "pasapalabra"
-        },
-        {
-            "SNAKE",
-            "Guía a la serpiente y come\ntoda la comida sin chocarte",
-            new Color(30, 180, 60),
-            "snake"
-        },
-        {
-            "PONG",
-            "Juega al clásico juego de\npelota contra la máquina",
-            new Color(200, 60, 200),
-            "pong"
-        },
-        {
-        	"TRES EN RAYA",
-        	"Pon tres fichas en línea\nantes que tu rival",
-        	new Color(220, 120, 30),
-        	"tres en raya"
-        }
-        
+        { "PASAPALABRA", new Color(100, 149, 210), "pasapalabra" }, // azul pastel
+        { "SNAKE",       new Color(120, 180, 120), "snake"       }, // verde pastel
+        { "PONG",        new Color(180, 120, 180), "pong"        }, // lila pastel
+        { "TRES EN RAYA",new Color(210, 150,  80), "tres en raya"} // naranja pastel
     };
 
-    private final Jugador     jugador;
-    private final ControlJuego controlJuego; // ← controlador que abre los juegos
+    private final Jugador      jugador;
+    private final ControlJuego controlJuego;
 
-    // ────────────────────────────────────────────────────────────────────────
-    public VentanaJuegos(Jugador jugador, ControlApp ControlApp) {
+    public VentanaJuegos(Jugador jugador, ControlApp controlApp) {
         this.jugador      = jugador;
-        this.controlJuego = new ControlJuego(ControlApp); // una instancia por ventana de menú
+        this.controlJuego = new ControlJuego(controlApp);
 
         setTitle("Menú de juegos — " + jugador.getUsername());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,53 +39,48 @@ public class VentanaJuegos extends JFrame {
         add(panelJuegos(), BorderLayout.CENTER);
         add(panelFooter(), BorderLayout.SOUTH);
 
-        setSize(1000, 560);
-        setMinimumSize(new Dimension(780, 460));
+        setSize(700, 620);
+        setMinimumSize(new Dimension(600, 520));
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    // ── Panel superior ───────────────────────────────────────────────────────
     private JPanel panelTitulo() {
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(FONDO);
-        p.setBorder(new EmptyBorder(28, 40, 10, 40));
+        p.setBorder(new EmptyBorder(30, 40, 10, 40));
 
         JLabel titulo = new JLabel("ARCADE", SwingConstants.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 38));
+        titulo.setFont(new Font("Georgia", Font.BOLD, 42));
         titulo.setForeground(TITULO_APP);
 
         JLabel sub = new JLabel(
             "Bienvenido, " + jugador.getUsername() + " — elige un juego",
             SwingConstants.CENTER);
-        sub.setFont(new Font("Arial", Font.PLAIN, 14));
-        sub.setForeground(new Color(160, 160, 200));
+        sub.setFont(new Font("Arial", Font.PLAIN, 13));
+        sub.setForeground(new Color(150, 100, 50));
 
         p.add(titulo, BorderLayout.CENTER);
         p.add(sub,    BorderLayout.SOUTH);
         return p;
     }
 
-    // ── Panel central con tarjetas ───────────────────────────────────────────
     private JPanel panelJuegos() {
-    JPanel p = new JPanel(new GridLayout(1, JUEGOS.length, 16, 0));
+        JPanel p = new JPanel(new GridLayout(2, 2, 20, 20));
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(24, 40, 24, 40));
 
         for (Object[] datos : JUEGOS) {
             p.add(crearTarjeta(
                 (String) datos[0],
-                (String) datos[1],
-                (Color)  datos[2],
-                (String) datos[3]
+                (Color)  datos[1],
+                (String) datos[2]
             ));
         }
         return p;
     }
 
-    // ── Cada tarjeta individual ──────────────────────────────────────────────
-    private JPanel crearTarjeta(String nombre, String descripcion,
-                                Color acento,  String tipo) {
+    private JPanel crearTarjeta(String nombre, Color acento, String tipo) {
 
         JPanel carta = new JPanel(new BorderLayout()) {
             @Override
@@ -139,39 +96,13 @@ public class VentanaJuegos extends JFrame {
             }
         };
         carta.setOpaque(false);
-        carta.setBorder(new EmptyBorder(24, 20, 20, 20));
+        carta.setBorder(new EmptyBorder(20, 20, 20, 20));
         carta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        // Icono circular con la inicial
-        JPanel icono = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                                    RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(acento);
-                g2.fillOval(0, 0, getWidth(), getHeight());
-            }
-        };
-        icono.setPreferredSize(new Dimension(54, 54));
-        icono.setOpaque(false);
-
-        JLabel letraIcono = new JLabel(String.valueOf(nombre.charAt(0)),
-                                       SwingConstants.CENTER);
-        letraIcono.setFont(new Font("Arial", Font.BOLD, 26));
-        letraIcono.setForeground(Color.WHITE);
-        icono.setLayout(new BorderLayout());
-        icono.add(letraIcono, BorderLayout.CENTER);
-
-        JPanel wrapIcono = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        wrapIcono.setOpaque(false);
-        wrapIcono.add(icono);
 
         // Nombre
         JLabel lblNombre = new JLabel(nombre, SwingConstants.CENTER);
-        lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-        lblNombre.setForeground(Color.WHITE);
-        lblNombre.setToolTipText(nombre);
+        lblNombre.setFont(new Font("Courier New", Font.BOLD, 16));
+        lblNombre.setForeground(new Color(80, 50, 20)); // marrón oscuro sobre crema
 
         // Botón Jugar
         JButton btnJugar = new JButton("▶  JUGAR") {
@@ -191,40 +122,32 @@ public class VentanaJuegos extends JFrame {
         btnJugar.setContentAreaFilled(false);
         btnJugar.setBorderPainted(false);
         btnJugar.setFocusPainted(false);
-        btnJugar.setPreferredSize(new Dimension(140, 38));
+        btnJugar.setPreferredSize(new Dimension(130, 36));
         btnJugar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        // ── Conexión del botón con el controlador ────────────────────────────
-        // Igual que en VentanaPrincipal:
-        //   btnLogin.addMouseListener(new MouseAdapter() {
-        //       public void mouseClicked(MouseEvent e) { controlador.iniciarSesion(...); }
-        //   });
         btnJugar.addActionListener(e -> abrirJuego(tipo));
 
         JPanel wrapBtn = new JPanel(new FlowLayout(FlowLayout.CENTER));
         wrapBtn.setOpaque(false);
         wrapBtn.add(btnJugar);
 
-        // Montar contenido de la tarjeta
         JPanel contenido = new JPanel();
         contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS));
         contenido.setOpaque(false);
-        contenido.add(wrapIcono);
-        contenido.add(Box.createVerticalStrut(14));
+        contenido.add(Box.createVerticalGlue());
         contenido.add(lblNombre);
-        contenido.add(Box.createVerticalStrut(8));
+        contenido.add(Box.createVerticalStrut(16));
         contenido.add(wrapBtn);
+        contenido.add(Box.createVerticalGlue());
 
         carta.add(contenido, BorderLayout.CENTER);
 
-        // Hover sobre la tarjeta completa también abre el juego
         carta.addMouseListener(new MouseAdapter() {
             @Override public void mouseEntered(MouseEvent e) {
-                carta.setBorder(new EmptyBorder(22, 18, 18, 18));
+                carta.setBorder(new EmptyBorder(18, 18, 18, 18));
                 carta.repaint();
             }
             @Override public void mouseExited(MouseEvent e) {
-                carta.setBorder(new EmptyBorder(24, 20, 20, 20));
+                carta.setBorder(new EmptyBorder(20, 20, 20, 20));
                 carta.repaint();
             }
             @Override public void mouseClicked(MouseEvent e) { abrirJuego(tipo); }
@@ -233,7 +156,6 @@ public class VentanaJuegos extends JFrame {
         return carta;
     }
 
-    // ── Pie de página ────────────────────────────────────────────────────────
     private JPanel panelFooter() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         p.setBackground(FONDO);
@@ -241,36 +163,25 @@ public class VentanaJuegos extends JFrame {
 
         JLabel lbl = new JLabel("Jugador: " + jugador.getUsername());
         lbl.setFont(new Font("Arial", Font.PLAIN, 12));
-        lbl.setForeground(new Color(100, 100, 140));
+        lbl.setForeground(new Color(150, 100, 50));
         p.add(lbl);
         return p;
     }
 
-    // ── Método central que delega en el controlador correspondiente ──────────
-    /**
-     * Delega la apertura del juego en ControlJuego o en el flujo de dificultad.
-     *
-     * Para añadir un juego nuevo:
-     *  1. Añade su tarjeta en el array JUEGOS[]
-     *  2. Añade un método abrirVentana<Juego>() en ControlJuego
-     *  3. Añade el caso aquí
-     */
     public void abrirJuego(String tipo) {
         switch (tipo) {
             case "pasapalabra":
-                // Pasapalabra tiene pantalla de dificultad propia
                 controlJuego.abrirVentanaPasapalabra(jugador);
                 break;
             case "snake":
-                // Snake sigue el mismo patrón: controlador monta el MVC y abre la ventana
                 controlJuego.abrirVentanaSnake();
                 break;
             case "pong":
                 controlJuego.abrirVentanaPong();
                 break;
             case "tres en raya":
-            	controlJuego.abrirVentanaRegistroTresEnRaya();
-            	break;
+                controlJuego.abrirVentanaRegistroTresEnRaya();
+                break;
             default:
                 JOptionPane.showMessageDialog(this,
                     "Juego no disponible todavía.",

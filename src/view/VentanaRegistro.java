@@ -22,6 +22,7 @@ public class VentanaRegistro extends JFrame {
 		setLocationRelativeTo(null); // Centra la ventana al centro
 
 		setLayout(new BorderLayout());
+		getContentPane().setBackground(new Color(245, 245, 220)); // beige
 
 		inicializarComponentes();
 	}
@@ -31,6 +32,7 @@ public class VentanaRegistro extends JFrame {
 		Font fuente = new Font("Limelight", Font.BOLD, 14);
 		
 	    JPanel panelCentral = new JPanel(new GridBagLayout());
+		panelCentral.setBackground(new Color(245, 245, 220));
 	    GridBagConstraints gbc = new GridBagConstraints();
 	    gbc.insets = new Insets(10, 10, 10, 10);
 
@@ -86,6 +88,10 @@ public class VentanaRegistro extends JFrame {
 	    JButton btnRegistro = new JButton("Registrarme");
 	    btnRegistro.setFont(fuente);
 	    btnRegistro.setPreferredSize(new Dimension(200, 30));
+		btnRegistro.setBackground(new Color(150, 100, 50)); // marrón
+		btnRegistro.setForeground(Color.WHITE);
+		btnRegistro.setOpaque(true);
+		btnRegistro.setBorderPainted(false);
 	    gbc.gridx = 0; gbc.gridy = 3;
 	    panelCentral.add(btnRegistro, gbc);
 

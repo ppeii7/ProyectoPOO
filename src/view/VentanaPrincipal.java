@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 		setLocationRelativeTo(null); // Centra la ventana al centro
 
 		setLayout(new BorderLayout());
+		getContentPane().setBackground(new Color(245, 245, 220));
 
 		inicializarComponentes();
 	}
@@ -29,6 +30,7 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 		Font fuente = new Font("Limelight", Font.BOLD, 14);
 		
 	    JPanel panelCentral = new JPanel(new GridBagLayout());
+		panelCentral.setBackground(new Color(245, 245, 220)); // beige
 	    GridBagConstraints gbc = new GridBagConstraints();
 	    gbc.insets = new Insets(10, 10, 10, 10);
 
@@ -83,6 +85,10 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 	    JButton btnLogin = new JButton("Iniciar sesión");
 	    btnLogin.setFont(fuente);
 	    btnLogin.setPreferredSize(new Dimension(200, 30));
+		btnLogin.setBackground(new Color(180, 100, 0)); // naranja oscuro
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setOpaque(true);
+		btnLogin.setBorderPainted(false);
 	    gbc.gridx = 0; gbc.gridy = 4;
 	    panelCentral.add(btnLogin, gbc);
 	    
@@ -102,6 +108,10 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 	    JButton btnRegistro = new JButton("Registrarse");
 	    btnRegistro.setFont(fuente);
 	    btnRegistro.setPreferredSize(new Dimension(200, 30));
+		btnRegistro.setBackground(new Color(150, 100, 50)); // marrón
+		btnRegistro.setForeground(Color.WHITE);
+		btnRegistro.setOpaque(true);
+		btnRegistro.setBorderPainted(false);
 	    gbc.gridx = 0; gbc.gridy = 5;
 	    panelCentral.add(btnRegistro, gbc);
 

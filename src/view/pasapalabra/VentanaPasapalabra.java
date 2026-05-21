@@ -11,37 +11,21 @@ import model.Jugador;
 import model.pasapalabra.Pasapalabra;
 import model.pasapalabra.Preguntas;
 
-/**
- * Vista del juego Pasapalabra.
- *
- * Muestra:
- *  - Rosco circular con las 27 letras y su estado (colores)
- *  - Pregunta actual
- *  - Campo de respuesta + botones (Responder / Pasapalabra / Salir)
- *  - Contadores de aciertos y fallos
- *
- * Sigue el mismo patrón que VentanaSnake: es un JPanel sin lógica,
- * expone getters/métodos para que el controlador la actualice.
- *
- * Se monta dentro de un JFrame creado por el método estático abrir().
- */
 public class VentanaPasapalabra extends JFrame {
 
     // ── Colores ──────────────────────────────────────────────────────────────
-    private static final Color FONDO        = new Color(12, 12, 40);
-    private static final Color FONDO_PANEL  = new Color(20, 20, 60);
-    private static final Color COLOR_PENDIENTE = new Color(30, 100, 210);
-    private static final Color COLOR_ACERTADA  = new Color(30, 180, 60);
-    private static final Color COLOR_FALLADA   = new Color(200, 40, 40);
-    private static final Color COLOR_PASADA    = new Color(200, 160, 0);
+    private static final Color FONDO           = new Color(245, 245, 220); // beige
+    private static final Color FONDO_PANEL     = new Color(255, 255, 240); // crema
+    private static final Color COLOR_PENDIENTE = new Color(100, 149, 210); // azul pastel
+    private static final Color COLOR_ACERTADA  = new Color(120, 180, 120); // verde pastel
+    private static final Color COLOR_FALLADA   = new Color(200, 100, 100); // rojo pastel
+    private static final Color COLOR_PASADA    = new Color(210, 170,  80); // naranja pastel
 
-    // ── Letras del rosco (español: incluye Ñ) ────────────────────────────────
     private static final char[] LETRAS = {
         'A','B','C','D','E','F','G','H','I','J','K','L','M',
         'N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'
     };
 
-    // ── Componentes que el controlador necesita actualizar ───────────────────
     private final PanelRosco panelRosco;
     private final JLabel     lblLetraActual;
     private final JLabel     lblPregunta;
@@ -52,7 +36,6 @@ public class VentanaPasapalabra extends JFrame {
     private final JLabel     lblAciertos;
     private final JLabel     lblFallos;
 
-    // ────────────────────────────────────────────────────────────────────────
     public VentanaPasapalabra(Jugador jugador) {
         setTitle("Pasapalabra — " + jugador.getUsername());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -64,39 +47,38 @@ public class VentanaPasapalabra extends JFrame {
         panelRosco.setPreferredSize(new Dimension(380, 380));
         panelRosco.setBackground(FONDO);
 
-        // ── Panel derecho: pregunta + respuesta ──────────────────────────────
+        // ── Panel derecho ────────────────────────────────────────────────────
         JPanel panelDerecho = new JPanel();
         panelDerecho.setLayout(new BoxLayout(panelDerecho, BoxLayout.Y_AXIS));
         panelDerecho.setBackground(FONDO);
         panelDerecho.setBorder(new EmptyBorder(20, 0, 20, 30));
 
-        // Letra actual grande
+        // Letra actual
         lblLetraActual = new JLabel("?", SwingConstants.CENTER);
-        lblLetraActual.setFont(new Font("Arial", Font.BOLD, 72));
-        lblLetraActual.setForeground(COLOR_PENDIENTE);
+        lblLetraActual.setFont(new Font("Georgia", Font.BOLD, 72));
+        lblLetraActual.setForeground(new Color(180, 100, 0));
         lblLetraActual.setAlignmentX(CENTER_ALIGNMENT);
 
-        // Enunciado de la pregunta
+        // Pregunta
         lblPregunta = new JLabel("<html><center>—</center></html>", SwingConstants.CENTER);
         lblPregunta.setFont(new Font("Arial", Font.PLAIN, 15));
-        lblPregunta.setForeground(new Color(210, 210, 255));
+        lblPregunta.setForeground(new Color(80, 50, 20));
         lblPregunta.setAlignmentX(CENTER_ALIGNMENT);
         lblPregunta.setMaximumSize(new Dimension(320, 120));
 
-        // Campo de respuesta
+        // Campo respuesta
         campRespuesta = new JTextField();
         campRespuesta.setFont(new Font("Arial", Font.BOLD, 16));
         campRespuesta.setMaximumSize(new Dimension(300, 40));
         campRespuesta.setAlignmentX(CENTER_ALIGNMENT);
         campRespuesta.setHorizontalAlignment(JTextField.CENTER);
-        campRespuesta.setBackground(new Color(30, 30, 70));
-        campRespuesta.setForeground(Color.WHITE);
-        campRespuesta.setCaretColor(Color.WHITE);
+        campRespuesta.setBackground(new Color(255, 255, 240));
+        campRespuesta.setForeground(new Color(80, 50, 20));
+        campRespuesta.setCaretColor(new Color(180, 100, 0));
         campRespuesta.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(new Color(60, 60, 130), 1),
+            BorderFactory.createLineBorder(new Color(180, 100, 0), 1),
             new EmptyBorder(6, 10, 6, 10)
         ));
-        // Enter también responde
         campRespuesta.addKeyListener(new KeyAdapter() {
             @Override public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) btnResponder.doClick();
@@ -104,9 +86,9 @@ public class VentanaPasapalabra extends JFrame {
         });
 
         // Botones
-        btnResponder   = crearBoton("✔  RESPONDER",   new Color(30, 180, 60));
-        btnPasapalabra = crearBoton("↷  PASAPALABRA", new Color(30, 100, 210));
-        btnSalir       = crearBoton("✕  SALIR",        new Color(120, 40, 40));
+        btnResponder   = crearBoton("✔  RESPONDER",   new Color(120, 180, 120));
+        btnPasapalabra = crearBoton("↷  PASAPALABRA", new Color(100, 149, 210));
+        btnSalir       = crearBoton("✕  SALIR",        new Color(200, 100, 100));
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         panelBotones.setOpaque(false);
@@ -115,8 +97,8 @@ public class VentanaPasapalabra extends JFrame {
         panelBotones.add(btnSalir);
 
         // Contadores
-        lblAciertos = contadorLabel("Aciertos: 0", COLOR_ACERTADA);
-        lblFallos   = contadorLabel("Fallos: 0",   COLOR_FALLADA);
+        lblAciertos = contadorLabel("Aciertos: 0", new Color(80, 150, 80));
+        lblFallos   = contadorLabel("Fallos: 0",   new Color(180, 80, 80));
 
         JPanel panelContadores = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 0));
         panelContadores.setOpaque(false);
@@ -152,36 +134,30 @@ public class VentanaPasapalabra extends JFrame {
 
     // ── API pública para el controlador ─────────────────────────────────────
 
-    /** Actualiza los colores del rosco según el estado de cada pregunta. */
     public void actualizarRosco(Preguntas[] preguntas) {
         panelRosco.setPreguntas(preguntas);
         panelRosco.repaint();
     }
 
-    /** Muestra la letra y el enunciado de la pregunta actual. */
     public void mostrarPregunta(char letra, String enunciado) {
         lblLetraActual.setText(letra == ' ' ? "—" : String.valueOf(letra));
         lblPregunta.setText("<html><center>" + enunciado + "</center></html>");
     }
 
-    /** Actualiza los contadores de aciertos y fallos. */
     public void actualizarContadores(int aciertos, int fallos) {
         lblAciertos.setText("Aciertos: " + aciertos);
         lblFallos.setText("Fallos: "   + fallos);
     }
 
-    /** Devuelve el texto del campo de respuesta. */
     public String getRespuesta() {
         return campRespuesta.getText();
     }
 
-    /** Borra el campo de respuesta y le devuelve el foco. */
     public void limpiarRespuesta() {
         campRespuesta.setText("");
         campRespuesta.requestFocusInWindow();
     }
 
-    /** Muestra un diálogo con el resultado final de la partida. */
     public void mostrarResultadoFinal(int aciertos, int fallos) {
         btnResponder.setEnabled(false);
         btnPasapalabra.setEnabled(false);
@@ -195,7 +171,6 @@ public class VentanaPasapalabra extends JFrame {
             "Resultado final", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // ── Getters de botones (para que el controlador los conecte) ─────────────
     public JButton getBtnResponder()   { return btnResponder; }
     public JButton getBtnPasapalabra() { return btnPasapalabra; }
     public JButton getBtnSalir()       { return btnSalir; }
@@ -230,37 +205,27 @@ public class VentanaPasapalabra extends JFrame {
         return lbl;
     }
 
-    // ── Método estático de apertura (mismo patrón que VentanaDificultad) ─────
-    /**
-     * Crea el modelo, la vista y el controlador, y muestra la ventana.
-     * Llamado desde VentanaDificultadPasapalabras.iniciarJuego(ruta).
-     */
+    // ── Método estático de apertura ──────────────────────────────────────────
     public static void abrir(Jugador jugador, String rutaFichero) {
         SwingUtilities.invokeLater(() -> {
-            Pasapalabra       modelo = new Pasapalabra(jugador, rutaFichero);
+            Pasapalabra        modelo = new Pasapalabra(jugador, rutaFichero);
             VentanaPasapalabra vista  = new VentanaPasapalabra(jugador);
-            new ControladorPasapalabra(modelo, vista);   // conecta modelo ↔ vista
+            new ControladorPasapalabra(modelo, vista);
             vista.setVisible(true);
         });
     }
 
-    /**
- * Carga una partida previamente guardada para el jugador y la muestra.
- * Llamado desde ControlJuego cuando el usuario elige continuar.
- */
-public static void abrirConProgreso(Jugador jugador, String rutaFichero) {
-    SwingUtilities.invokeLater(() -> {
-        Pasapalabra modelo = new Pasapalabra(jugador, rutaFichero);
-        modelo.cargarProgreso();                        // ← restaura estados
-        VentanaPasapalabra vista = new VentanaPasapalabra(jugador);
-        new ControladorPasapalabra(modelo, vista);
-        vista.setVisible(true);
-    });
-}
+    public static void abrirConProgreso(Jugador jugador, String rutaFichero) {
+        SwingUtilities.invokeLater(() -> {
+            Pasapalabra modelo = new Pasapalabra(jugador, rutaFichero);
+            modelo.cargarProgreso();
+            VentanaPasapalabra vista = new VentanaPasapalabra(jugador);
+            new ControladorPasapalabra(modelo, vista);
+            vista.setVisible(true);
+        });
+    }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // Panel interno que pinta el rosco circular
-    // ══════════════════════════════════════════════════════════════════════════
+    // ── Panel del rosco ──────────────────────────────────────────────────────
     private static class PanelRosco extends JPanel {
 
         private Preguntas[] preguntas = new Preguntas[0];
@@ -279,18 +244,15 @@ public static void abrirConProgreso(Jugador jugador, String rutaFichero) {
             int cx = getWidth()  / 2;
             int cy = getHeight() / 2;
             int radio     = Math.min(cx, cy) - 20;
-            int radioCirc = 18; // radio de cada círculo de letra
-
-            int n = LETRAS.length; // 27 letras
+            int radioCirc = 18;
+            int n = LETRAS.length;
 
             for (int i = 0; i < n; i++) {
-                // Ángulo: empieza arriba (-90°) y va en sentido horario
                 double angulo = Math.toRadians(-90.0 + (360.0 / n) * i);
                 int x = (int) (cx + radio * Math.cos(angulo));
                 int y = (int) (cy + radio * Math.sin(angulo));
 
-                // Buscar estado de esta letra
-                Color colorFondo = COLOR_PENDIENTE; // por defecto
+                Color colorFondo = COLOR_PENDIENTE;
                 if (preguntas != null) {
                     for (Preguntas p : preguntas) {
                         if (p != null && p.getLetra() == LETRAS[i]) {
@@ -305,21 +267,18 @@ public static void abrirConProgreso(Jugador jugador, String rutaFichero) {
                     }
                 }
 
-                // Dibujar círculo
                 g2.setColor(colorFondo);
                 g2.fill(new Ellipse2D.Float(
                     x - radioCirc, y - radioCirc,
                     radioCirc * 2, radioCirc * 2));
 
-                // Borde oscuro
-                g2.setColor(new Color(0, 0, 0, 80));
+                g2.setColor(new Color(180, 100, 0, 80));
                 g2.setStroke(new BasicStroke(1.5f));
                 g2.draw(new Ellipse2D.Float(
                     x - radioCirc, y - radioCirc,
                     radioCirc * 2, radioCirc * 2));
 
-                // Letra
-                g2.setColor(Color.WHITE);
+                g2.setColor(new Color(80, 50, 20));
                 g2.setFont(new Font("Arial", Font.BOLD, 13));
                 FontMetrics fm = g2.getFontMetrics();
                 String letra = String.valueOf(LETRAS[i]);

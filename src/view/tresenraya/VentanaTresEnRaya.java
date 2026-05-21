@@ -17,9 +17,7 @@ public class VentanaTresEnRaya extends JFrame {
 
     public VentanaTresEnRaya(Jugador j1, Jugador j2, ControlTresEnRaya control) {
         this.modelo  = new TresEnRaya(j1, j2);
-        this.control = control; // ← usa el que viene de fuera
-        // ... resto igual
-    
+        this.control = control;
 
         setTitle("Tres en Raya — " + j1.getUsername() + " vs " + j2.getUsername());
         setSize(450, 550);
@@ -36,18 +34,18 @@ public class VentanaTresEnRaya extends JFrame {
 
         // ── Panel superior ───────────────────────────────────────────────────
         JPanel panelNorte = new JPanel(new BorderLayout());
-        panelNorte.setBackground(new Color(30, 30, 60));
+        panelNorte.setBackground(new Color(230, 220, 190)); // beige oscuro
         panelNorte.setBorder(BorderFactory.createEmptyBorder(15, 20, 15, 20));
 
         JLabel lblTitulo = new JLabel("TRES EN RAYA", SwingConstants.CENTER);
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 22));
-        lblTitulo.setForeground(new Color(255, 220, 50));
+        lblTitulo.setFont(new Font("Georgia", Font.BOLD, 22));
+        lblTitulo.setForeground(new Color(180, 100, 0)); // naranja oscuro
 
         lblTurno = new JLabel(
             "Turno: " + modelo.getJ1().getUsername() + " (X)",
             SwingConstants.CENTER);
         lblTurno.setFont(new Font("Arial", Font.PLAIN, 15));
-        lblTurno.setForeground(Color.WHITE);
+        lblTurno.setForeground(new Color(80, 50, 20)); // marrón
 
         panelNorte.add(lblTitulo, BorderLayout.NORTH);
         panelNorte.add(lblTurno,  BorderLayout.SOUTH);
@@ -55,17 +53,17 @@ public class VentanaTresEnRaya extends JFrame {
 
         // ── Tablero ──────────────────────────────────────────────────────────
         JPanel panelTablero = new JPanel(new GridLayout(3, 3, 6, 6));
-        panelTablero.setBackground(Color.BLACK);
+        panelTablero.setBackground(new Color(180, 100, 0)); // naranja oscuro de separador
         panelTablero.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         for (int i = 0; i < 9; i++) {
             int indice = i;
             botones[i] = new JButton("");
             botones[i].setFont(new Font("Arial", Font.BOLD, 52));
-            botones[i].setBackground(new Color(25, 25, 70));
-            botones[i].setForeground(Color.WHITE);
+            botones[i].setBackground(new Color(255, 255, 240)); // crema
+            botones[i].setForeground(new Color(80, 50, 20));
             botones[i].setFocusPainted(false);
-            botones[i].setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+            botones[i].setBorder(BorderFactory.createLineBorder(new Color(180, 100, 0), 2));
             botones[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             botones[i].addActionListener(e -> manejarClick(indice));
             panelTablero.add(botones[i]);
@@ -74,14 +72,16 @@ public class VentanaTresEnRaya extends JFrame {
 
         // ── Panel inferior ───────────────────────────────────────────────────
         JPanel panelSur = new JPanel(new FlowLayout());
-        panelSur.setBackground(new Color(30, 30, 60));
+        panelSur.setBackground(new Color(230, 220, 190)); // beige oscuro
         panelSur.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
         JButton btnReiniciar = new JButton("Reiniciar");
         btnReiniciar.setFont(new Font("Arial", Font.BOLD, 13));
-        btnReiniciar.setBackground(new Color(255, 220, 50));
-        btnReiniciar.setForeground(Color.BLACK);
+        btnReiniciar.setBackground(new Color(180, 100, 0)); // naranja oscuro
+        btnReiniciar.setForeground(Color.WHITE);
         btnReiniciar.setFocusPainted(false);
+        btnReiniciar.setOpaque(true);
+        btnReiniciar.setBorderPainted(false);
         btnReiniciar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnReiniciar.addActionListener(e -> reiniciar());
 
@@ -95,19 +95,20 @@ public class VentanaTresEnRaya extends JFrame {
 
         boolean esJ1 = modelo.isTurnoJ1();
         botones[indice].setText(esJ1 ? "X" : "O");
-        botones[indice].setForeground(esJ1 ? new Color(100, 180, 255) : new Color(255, 100, 100));
+        botones[indice].setForeground(esJ1
+            ? new Color(100, 149, 210)  // azul pastel para X
+            : new Color(200, 100, 100)); // rojo pastel para O
 
-     // VentanaTresEnRaya.java — manejarClick
         if (modelo.hayGanador()) {
             int[] combo = modelo.getCombinacionGanadora();
-            botones[combo[0]].setBackground(new Color(50, 180, 50));
-            botones[combo[1]].setBackground(new Color(50, 180, 50));
-            botones[combo[2]].setBackground(new Color(50, 180, 50));
+            botones[combo[0]].setBackground(new Color(120, 180, 120)); // verde pastel
+            botones[combo[1]].setBackground(new Color(120, 180, 120));
+            botones[combo[2]].setBackground(new Color(120, 180, 120));
             JOptionPane.showMessageDialog(this,
                 "¡" + modelo.getGanador().getUsername() + " ha ganado!",
                 "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
-            control.setGanador(modelo.getGanador()); // ← actualiza ganador
-            control.guardarDatosPartidas();          // ← guarda aquí
+            control.setGanador(modelo.getGanador());
+            control.guardarDatosPartidas();
             reiniciar();
             return;
         }
@@ -115,8 +116,8 @@ public class VentanaTresEnRaya extends JFrame {
         if (modelo.tableroLleno()) {
             JOptionPane.showMessageDialog(this, "¡Empate!",
                 "Fin del juego", JOptionPane.INFORMATION_MESSAGE);
-            control.setGanador(null);           // ← empate, ganador null
-            control.guardarDatosPartidas();     // ← guarda aquí
+            control.setGanador(null);
+            control.guardarDatosPartidas();
             reiniciar();
             return;
         }
@@ -131,7 +132,7 @@ public class VentanaTresEnRaya extends JFrame {
         modelo.reiniciar();
         for (JButton b : botones) {
             b.setText("");
-            b.setBackground(new Color(25, 25, 70));
+            b.setBackground(new Color(255, 255, 240)); // crema
         }
         lblTurno.setText("Turno: " + modelo.getJ1().getUsername() + " (X)");
     }
