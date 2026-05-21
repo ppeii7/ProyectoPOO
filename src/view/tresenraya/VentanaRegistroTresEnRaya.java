@@ -41,11 +41,11 @@ public class VentanaRegistroTresEnRaya extends JFrame {
         Font fuente = new Font("Limelight", Font.BOLD, 14);
 
         JPanel panelCentral = new JPanel(new GridBagLayout());
-        panelCentral.setBackground(new Color(245, 245, 220)); // beige
+        panelCentral.setBackground(new Color(245, 245, 220));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        getContentPane().setBackground(new Color(245, 245, 220)); // beige
+        getContentPane().setBackground(new Color(245, 245, 220));
 
         // ── Título ───────────────────────────────────────────────────────────
         JLabel lblTitulo = new JLabel("TRES EN RAYA", SwingConstants.CENTER);
@@ -55,17 +55,25 @@ public class VentanaRegistroTresEnRaya extends JFrame {
         panelCentral.add(lblTitulo, gbc);
         gbc.gridwidth = 1;
 
+        // ── Subtítulo ─────────────────────────────────────────────────────────
+        JLabel lblSub = new JLabel("¡DEMOSTRAD QUIÉN MANDA AQUÍ!", SwingConstants.CENTER);
+        lblSub.setFont(new Font("Georgia", Font.BOLD, 22));
+        lblSub.setForeground(new Color(180, 100, 0));
+        gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2;
+        panelCentral.add(lblSub, gbc);
+        gbc.gridwidth = 1;
+
         // ── Labels jugadores ─────────────────────────────────────────────────
         JLabel label1 = new JLabel("Jugador 1", SwingConstants.CENTER);
         label1.setFont(fuente);
         label1.setForeground(new Color(150, 100, 50));
-        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.gridx = 0; gbc.gridy = 2;
         panelCentral.add(label1, gbc);
 
         JLabel label2 = new JLabel("Jugador 2", SwingConstants.CENTER);
         label2.setFont(fuente);
         label2.setForeground(new Color(150, 100, 50));
-        gbc.gridx = 1; gbc.gridy = 1;
+        gbc.gridx = 1; gbc.gridy = 2;
         panelCentral.add(label2, gbc);
 
         // ── Campos J1 ────────────────────────────────────────────────────────
@@ -75,7 +83,7 @@ public class VentanaRegistroTresEnRaya extends JFrame {
         cajaUsuarioJ1.setBackground(new Color(255, 255, 240));
         cajaUsuarioJ1.setPreferredSize(new Dimension(200, 30));
         cajaUsuarioJ1.setText(controlApp.getNombreUsuarioActual());
-        gbc.gridx = 0; gbc.gridy = 2;
+        gbc.gridx = 0; gbc.gridy = 3;
         panelCentral.add(cajaUsuarioJ1, gbc);
 
         JPasswordField cajaContraseñaJ1 = new JPasswordField("Nombre de usuario");
@@ -84,7 +92,7 @@ public class VentanaRegistroTresEnRaya extends JFrame {
         cajaContraseñaJ1.setBackground(new Color(255, 255, 240));
         cajaContraseñaJ1.setPreferredSize(new Dimension(200, 30));
         cajaContraseñaJ1.setText(controlApp.getContraseñaActual());
-        gbc.gridx = 0; gbc.gridy = 3;
+        gbc.gridx = 0; gbc.gridy = 4;
         panelCentral.add(cajaContraseñaJ1, gbc);
 
         // ── Campos J2 ────────────────────────────────────────────────────────
@@ -107,7 +115,7 @@ public class VentanaRegistroTresEnRaya extends JFrame {
                 }
             }
         });
-        gbc.gridx = 1; gbc.gridy = 2;
+        gbc.gridx = 1; gbc.gridy = 3;
         panelCentral.add(cajaUsuarioJ2, gbc);
 
         JPasswordField cajaContraseñaJ2 = new JPasswordField("Contraseña");
@@ -132,7 +140,7 @@ public class VentanaRegistroTresEnRaya extends JFrame {
                 }
             }
         });
-        gbc.gridx = 1; gbc.gridy = 3;
+        gbc.gridx = 1; gbc.gridy = 4;
         panelCentral.add(cajaContraseñaJ2, gbc);
 
         // ── Botón ────────────────────────────────────────────────────────────
@@ -143,7 +151,7 @@ public class VentanaRegistroTresEnRaya extends JFrame {
         btnAñadirJugador.setForeground(Color.WHITE);
         btnAñadirJugador.setOpaque(true);
         btnAñadirJugador.setBorderPainted(false);
-        gbc.gridx = 1; gbc.gridy = 4;
+        gbc.gridx = 1; gbc.gridy = 5;
         panelCentral.add(btnAñadirJugador, gbc);
 
         add(panelCentral, BorderLayout.CENTER);
@@ -164,6 +172,29 @@ public class VentanaRegistroTresEnRaya extends JFrame {
                     controlTresEnRaya.crearPartida();
                     dispose();
                 }
+            }
+        });
+
+        JLabel lblNoTienes = new JLabel("¿No tienes cuenta?", SwingConstants.CENTER);
+        lblNoTienes.setFont(new Font("Arial", Font.PLAIN, 12));
+        lblNoTienes.setForeground(new Color(150, 100, 50));
+        gbc.gridx = 1; gbc.gridy = 6;
+        panelCentral.add(lblNoTienes, gbc);
+
+        JButton btnRegistrarse = new JButton("Registrarse");
+        btnRegistrarse.setFont(fuente);
+        btnRegistrarse.setPreferredSize(new Dimension(200, 30));
+        btnRegistrarse.setBackground(new Color(150, 100, 50));
+        btnRegistrarse.setForeground(Color.WHITE);
+        btnRegistrarse.setOpaque(true);
+        btnRegistrarse.setBorderPainted(false);
+        gbc.gridx = 1; gbc.gridy = 7;
+        panelCentral.add(btnRegistrarse, gbc);
+
+        btnRegistrarse.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controlApp.abrirRegistro();
             }
         });
     }

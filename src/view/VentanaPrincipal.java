@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 	public VentanaPrincipal(ControlApp controlador) {
 
 		this.controlador = controlador;
-		setTitle("Patata Caliente");
+		setTitle("Arcade - Inicio de sesión");
 		setSize(1000, 750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cierra la app al cerrar la ventana
 		setLocationRelativeTo(null); // Centra la ventana al centro
@@ -33,6 +33,13 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 		panelCentral.setBackground(new Color(245, 245, 220)); // beige
 	    GridBagConstraints gbc = new GridBagConstraints();
 	    gbc.insets = new Insets(10, 10, 10, 10);
+
+
+		JLabel lblTitulo = new JLabel("INICIA SESIÓN", SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Georgia", Font.BOLD, 25));
+		lblTitulo.setForeground(new Color(180, 100, 0));
+		gbc.gridx = 0; gbc.gridy = 0;
+		panelCentral.add(lblTitulo, gbc);
 
 	    // Caja de texto usuario
 	    JTextField CajaUsuario = new JTextField("Nombre de usuario");
@@ -89,7 +96,7 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.setOpaque(true);
 		btnLogin.setBorderPainted(false);
-	    gbc.gridx = 0; gbc.gridy = 4;
+	    gbc.gridx = 0; gbc.gridy = 5;
 	    panelCentral.add(btnLogin, gbc);
 	    
 	    btnLogin.addMouseListener(new MouseAdapter() {
@@ -112,8 +119,9 @@ public class VentanaPrincipal extends JFrame implements MouseListener, TextListe
 		btnRegistro.setForeground(Color.WHITE);
 		btnRegistro.setOpaque(true);
 		btnRegistro.setBorderPainted(false);
-	    gbc.gridx = 0; gbc.gridy = 5;
+	    gbc.gridx = 0; gbc.gridy = 6;
 	    panelCentral.add(btnRegistro, gbc);
+
 
 	    add(panelCentral, BorderLayout.CENTER);
 	    

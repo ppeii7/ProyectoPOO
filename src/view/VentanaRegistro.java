@@ -16,7 +16,7 @@ public class VentanaRegistro extends JFrame {
 
 		this.controlador= controlador;
 		
-		setTitle("Patata Caliente");
+		setTitle("Registro");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		setLocationRelativeTo(null); // Centra la ventana al centro
@@ -35,6 +35,13 @@ public class VentanaRegistro extends JFrame {
 		panelCentral.setBackground(new Color(245, 245, 220));
 	    GridBagConstraints gbc = new GridBagConstraints();
 	    gbc.insets = new Insets(10, 10, 10, 10);
+
+		JLabel lblTitulo = new JLabel("¡REGÍSTRATE YA!", SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Georgia", Font.BOLD, 22));
+		lblTitulo.setForeground(new Color(180, 100, 0));
+		gbc.gridx = 0; gbc.gridy = 0;
+		panelCentral.add(lblTitulo, gbc);
+
 
 	    // Caja de texto usuario
 	    JTextField cajaUsuario = new JTextField("Nombre de usuario");
@@ -55,7 +62,7 @@ public class VentanaRegistro extends JFrame {
 	            }
 	        }
 	    });
-	    gbc.gridx = 0; gbc.gridy = 0;
+	    gbc.gridx = 0; gbc.gridy = 1;
 	    panelCentral.add(cajaUsuario, gbc);
 
 	 // Caja de contraseña
@@ -80,7 +87,7 @@ public class VentanaRegistro extends JFrame {
 	            }
 	        }
 	    });
-	    gbc.gridx = 0; gbc.gridy = 1;
+	    gbc.gridx = 0; gbc.gridy = 3;
 	    panelCentral.add(cajaContraseña, gbc);
 
 
@@ -92,7 +99,7 @@ public class VentanaRegistro extends JFrame {
 		btnRegistro.setForeground(Color.WHITE);
 		btnRegistro.setOpaque(true);
 		btnRegistro.setBorderPainted(false);
-	    gbc.gridx = 0; gbc.gridy = 3;
+	    gbc.gridx = 0; gbc.gridy = 5;
 	    panelCentral.add(btnRegistro, gbc);
 
 	    add(panelCentral, BorderLayout.CENTER);
