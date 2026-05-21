@@ -77,8 +77,8 @@ public class VentanaJuegos extends JFrame {
         add(panelJuegos(), BorderLayout.CENTER);
         add(panelFooter(), BorderLayout.SOUTH);
 
-        setSize(820, 560);
-        setMinimumSize(new Dimension(600, 420));
+        setSize(1000, 560);
+        setMinimumSize(new Dimension(780, 460));
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -106,7 +106,7 @@ public class VentanaJuegos extends JFrame {
 
     // ── Panel central con tarjetas ───────────────────────────────────────────
     private JPanel panelJuegos() {
-        JPanel p = new JPanel(new GridLayout(1, JUEGOS.length, 24, 0));
+    JPanel p = new JPanel(new GridLayout(1, JUEGOS.length, 16, 0));
         p.setBackground(FONDO);
         p.setBorder(new EmptyBorder(24, 40, 24, 40));
 
@@ -169,15 +169,9 @@ public class VentanaJuegos extends JFrame {
 
         // Nombre
         JLabel lblNombre = new JLabel(nombre, SwingConstants.CENTER);
-        lblNombre.setFont(new Font("Arial", Font.BOLD, 18));
+        lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
         lblNombre.setForeground(Color.WHITE);
-
-        // Descripción
-        JLabel lblDesc = new JLabel(
-            "<html><center>" + descripcion.replace("\n", "<br>") + "</center></html>",
-            SwingConstants.CENTER);
-        lblDesc.setFont(new Font("Arial", Font.PLAIN, 13));
-        lblDesc.setForeground(new Color(160, 160, 200));
+        lblNombre.setToolTipText(nombre);
 
         // Botón Jugar
         JButton btnJugar = new JButton("▶  JUGAR") {
@@ -219,8 +213,6 @@ public class VentanaJuegos extends JFrame {
         contenido.add(Box.createVerticalStrut(14));
         contenido.add(lblNombre);
         contenido.add(Box.createVerticalStrut(8));
-        contenido.add(lblDesc);
-        contenido.add(Box.createVerticalGlue());
         contenido.add(wrapBtn);
 
         carta.add(contenido, BorderLayout.CENTER);
